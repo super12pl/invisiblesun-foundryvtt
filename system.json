@@ -8,7 +8,7 @@
     "verified": "12.331"
   },
   "url": "https://github.com/super12pl/invisiblesun-foundryvtt",
-  "manifest": "",
+  "manifest": "https://github.com/super12pl/invisiblesun-foundryvtt/system.json",
   "download": "",
   "authors": [
     {
@@ -17,13 +17,22 @@
     }
   ],
   "esmodules": [
-    "mysystem.mjs"
+    "invisiblesun.mjs"
   ],
   "styles": [
-    "css/system-styles.css"
-  ],  
-  "packs": [
+    "styles/system-styles.css"
   ],
+  "flags": {
+    "hotReload": {
+      "extensions": [
+        "css",
+        "json",
+        "js",
+        "html"
+      ]
+    }
+  },
+  "packs": [],
   "languages": [
     {
       "lang": "en",

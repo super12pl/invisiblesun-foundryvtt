@@ -1,22 +1,42 @@
 {
   "Actor": {
     "types": [
-      "pc"
+      "vislae"
     ],
-    "pc": {
+    "vislae": {
       "basic": {
-        "foundation": "",
-        "heart": "",
-        "order": "",
-        "forte": "",
-        "degree": 1,
-        "acumen": 0,
-        "crux": 0
+        "foundation": {
+          "value": ""
+        },
+        "heart": {
+          "value": ""
+        },
+        "order": {
+          "value": ""
+        },
+        "forte": {
+          "value": ""
+        },
+        "degree": {
+          "value": 1
+        },
+        "acumen": {
+          "value": 0
+        },
+        "crux": {
+          "value": 0
+        }
       },
       "stats": {
-        "certes": 0,
-        "qualia": 0,
-        "hiddenKnowledge": 0
+        "certes": {
+          "value": 0
+        },
+        "qualia": {
+          "value": 0
+        },
+        "hiddenKnowledge": {
+          "value": 0
+        }
       },
       "pools": {
         "certespools": {
@@ -64,13 +84,23 @@
           "tenHours": false
         },
         "damageTrack": {
-          "injuries": 0,
-          "wounds": 0,
-          "anguish": 0
+          "injuries": {
+            "value": 0
+          },
+          "wounds": {
+            "value": 0
+          },
+          "anguish": {
+            "value": 0
+          }
         },
         "armor": {
-          "ratingTotal": 0,
-          "costTotal": 0
+          "ratingTotal": {
+            "value": 0
+          },
+          "costTotal": {
+            "value": 0
+          }
         }
       },
       "equipment": {

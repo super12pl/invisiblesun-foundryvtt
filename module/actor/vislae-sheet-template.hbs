@@ -1,0 +1,96 @@
+<form class="flexcol" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-header">
+        {{!-- Header stuff goes here --}}
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100" />
+        <div class="header-fields">
+            <h4 class="charname flexcol">
+                <div class="flex-group-center">
+
+                    <input style="width: 100%;font-weight:bold;" name="name" type="text" value="{{actor.name}}"
+                        placeholder="Name" />
+                </div>
+
+                <div class="flex-group-center">
+                    A
+                    <input name="system.basic.foundation.value" placeholder="FOUNDATION"
+                        value="{{system.basic.foundation.value}}" type="text" />
+                    <input name="system.basic.heart.value" placeholder="HEART" value="{{system.basic.heart.value}}"
+                        type="text" />
+                </div>
+                <div class="flex-group-center">
+                    OF THE ORDER OF
+                    <input name="system.basic.order.value" type="text" placeholder="ORDER"
+                        value="{{system.basic.order.value}}" />
+                </div>
+                <div class="flex-group-center">
+                    WHO
+                    <input name="system.basic.forte.value" placeholder="FORTE" value="{{system.basic.forte.value}}"
+                        type="text" />
+                </div>
+
+            </h4>
+            <div class="flexcol">
+                <h3>Certes</h3>
+                <div class="resources grid grid-4col">
+                    {{#with system.pools.certespools}}
+                    <div class="resource flex-group-center">
+                        <label class="resource-label">Accurancy</label>
+                        <div class="resource-content flexrow flex-center flex-between">
+                            <input type="text" name="system.pools.certespools.accurancy.value"
+                                value="{{accurancy.value}}" data-dtype="Number" />
+                            <span class="resouce-content"> / </span>
+                            <input type="text" name="system.pools.certespools.accurancy.max" value="{{accurancy.max}}"
+                                data-dtype="Number" />
+                        </div>
+                    </div>
+                    <div class="resource flex-group-center">
+                        <label class="resource-label">Movement</label>
+                        <div class="resource-content flexrow flex-center flex-between">
+                            <input type="text" name="system.pools.certespools.movement.value" value="{{movement.value}}"
+                                data-dtype="Number" />
+                            <span class="resouce-content"> / </span>
+                            <input type="text" name="system.pools.certespools.movement.max" value="{{movement.max}}"
+                                data-dtype="Number" />
+                        </div>
+                    </div>
+                    <div class="resource flex-group-center">
+                        <label class="resource-label">Physicality</label>
+                        <div class="resource-content flexrow flex-center flex-between">
+                            <input type="text" name="system.pools.certespools.physicality.value"
+                                value="{{physicality.value}}" data-dtype="Number" />
+                            <span class="resouce-content"> / </span>
+                            <input type="text" name="system.pools.certespools.physicality.value-max"
+                                value="{{physicality.max}}" data-dtype="Number" />
+                        </div>
+                    </div>
+                    <div class="resource flex-group-center">
+                        <label class="resource-label">Perception</label>
+                        <div class="resource-content flexrow flex-center flex-between">
+                            <input type="text" name="system.pools.certespools.perception.value"
+                                value="{{perception.value}}" data-dtype="Number" />
+                            <span class="resouce-content"> / </span>
+                            <input type="text" name="system.pools.certespools.perception.max" value="{{perception.max}}"
+                                data-dtype="Number" />
+                        </div>
+                    </div>
+                    {{/with}}
+                </div>
+            </div>
+
+            <div class="abilities grid grid-3col">{{!-- abilities here --}}</div>
+        </div>
+    </header>
+
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="description">Description</a>
+        <a class="item" data-tab="items">Items</a>
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+        {{!-- Tab content goes here --}}
+    </section>
+</form>
