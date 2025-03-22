@@ -16,15 +16,6 @@
         },
         "forte": {
           "value": ""
-        },
-        "degree": {
-          "value": 1
-        },
-        "acumen": {
-          "value": 0
-        },
-        "crux": {
-          "value": 0
         }
       },
       "stats": {
@@ -34,80 +25,85 @@
         "qualia": {
           "value": 0
         },
+        "acumen": {
+          "value": 0
+        },
+        "crux": {
+          "value": 0
+        },
         "hiddenKnowledge": {
           "value": 0
+        },
+        "degree": {
+          "value": 1
         }
       },
       "pools": {
-        "certespools": {
-          "accurancy": {
-            "value": 0,
-            "max": 0
-          },
-          "movement": {
-            "value": 0,
-            "max": 0
-          },
-          "physicality": {
-            "value": 0,
-            "max": 0
-          },
-          "perception": {
-            "value": 0,
-            "max": 0
-          }
+        "accurancy": {
+          "value": 0,
+          "max": 0
         },
-        "qualiapools": {
-          "sorcery": {
-            "value": 0,
-            "max": 0
-          },
-          "interaction": {
-            "value": 0,
-            "max": 0
-          },
-          "intellect": {
-            "value": 0,
-            "max": 0
-          },
-          "sortilege": {
-            "value": 0,
-            "max": 0
-          }
+        "movement": {
+          "value": 0,
+          "max": 0
+        },
+        "sorcery": {
+          "value": 0,
+          "max": 0
+        },
+        "interaction": {
+          "value": 0,
+          "max": 0
+        },
+        "physicality": {
+          "value": 0,
+          "max": 0
+        },
+        "perception": {
+          "value": 0,
+          "max": 0
+        },
+        "intellect": {
+          "value": 0,
+          "max": 0
+        },
+        "sortilege": {
+          "value": 0,
+          "max": 0
+        }
+      }
+    },
+    "combat": {
+      "recoveries": {
+        "oneAction": false,
+        "tenMinutes": false,
+        "oneHour": false,
+        "tenHours": false
+      },
+      "damageTrack": {
+        "injuries": {
+          "value": 0
+        },
+        "wounds": {
+          "value": 0
+        },
+        "anguish": {
+          "value": 0
         }
       },
-      "combat": {
-        "recoveries": {
-          "oneAction": false,
-          "tenMinutes": false,
-          "oneHour": false,
-          "tenHours": false
+      "armor": {
+        "ratingTotal": {
+          "value": 0
         },
-        "damageTrack": {
-          "injuries": {
-            "value": 0
-          },
-          "wounds": {
-            "value": 0
-          },
-          "anguish": {
-            "value": 0
-          }
-        },
-        "armor": {
-          "ratingTotal": {
-            "value": 0
-          },
-          "costTotal": {
-            "value": 0
-          }
+        "costTotal": {
+          "value": 0
         }
-      },
-      "equipment": {
-        "ephemeraLimit": 2
-      },
-      "notes": "",
-      "gmNotes": ""
-    }
+      }
+    },
+    "equipment": {
+      "ephemeraLimit": 2
+    },
+    "notes": "",
+    "gmNotes": ""
   }
 }

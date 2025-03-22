@@ -20,4 +20,8 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
         context.flags = actorData.flags.invisiblesun || {}
         return context
     }
+    /** @override */
+    activateListeners(html){
+        
+    }
 }
