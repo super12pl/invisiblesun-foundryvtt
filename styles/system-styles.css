@@ -281,6 +281,11 @@
     display: flex;
 }
 
+.invisiblesun .items-header .item-resource {
+    text-align: left;
+    display: flex;
+}
+
 .invisiblesun .items-list {
     list-style: none;
     margin: 0;
@@ -297,13 +302,20 @@
 }
 
 .invisiblesun .items-list .item-name {
-    flex: 2;
     margin: 0;
     overflow: hidden;
     font-size: 13px;
     text-align: left;
     align-items: center;
     display: flex;
+}
+.invisiblesun .items-list .item-quantity {
+    justify-content: space-between;
+}
+
+
+.invisiblesun .items-list .item-name input {
+    width: min-content;
 }
 
 .invisiblesun .items-list .item-name h3,

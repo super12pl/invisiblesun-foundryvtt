@@ -105,5 +105,25 @@
     },
     "notes": "",
     "gmNotes": ""
+  },
+  "Item": {
+    "types": [
+      "item"
+    ],
+    "templates": {
+      "base": {
+        "level": 0,
+        "description": ""
+      }
+    },
+    "item": {
+      "templates": [
+        "base"
+      ],
+      "quantity": {
+        "value": 0,
+        "min": 0
+      }
+    }
   }
 }
