@@ -5,6 +5,10 @@
     font-family: "Roboto", sans-serif;
 }
 
+.flexcol {
+    gap: 5px;
+}
+
 .rollable:hover,
 .rollable:focus {
     color: #000;
@@ -309,6 +313,7 @@
     align-items: center;
     display: flex;
 }
+
 .invisiblesun .items-list .item-quantity {
     justify-content: space-between;
 }
@@ -402,4 +407,20 @@
 
 .invisiblesun .effects .item .effect-controls {
     border: none;
+}
+
+.roll-engine .flexcol {
+    height: 60px;
+}
+
+.roll-engine .flexcol>* {
+    height: 30px;
+}
+
+.flexcolcenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
 }

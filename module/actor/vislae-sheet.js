@@ -1,6 +1,14 @@
 /**
-@extends {ActorSheet}
+* @extends {ActorSheet}
 */
+import {
+    rollEngineForm
+} from "../roll-engine/roll-engine-form.js";
+window.Handlebars.registerHelper('select', function (value, options) {
+    var $el = $('<select />').html(options.fn(this));
+    $el.find('[value="' + value + '"]').attr({ 'selected': 'selected' });
+    return $el.html();
+});
 export class InvisibleSunVislaeActorSheet extends ActorSheet {
     /** @override */
     static get defaultOptions() {
@@ -8,7 +16,7 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
             classes: ["invisiblesun", "sheet", "actor"],
             template: "systems/invisiblesun/module/actor/vislae-sheet-template.hbs",
             width: 600,
-            height: 600,
+            height: 700,
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "features" }]
         });
     }
@@ -57,8 +65,13 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
         // Finally, create the item!
         return await Item.create(itemData, { parent: this.actor });
     }
-    async _onRoll() {
-        //Oh lord almighty
+    async _onRoll(event) {
+        event.preventDefault()
+        const element = event.currentTarget
+        const dataset = element.dataset
+
+        rollEngineForm({ actor: this.actor, dataset: dataset, sheet: this })
+
     }
 
     /** @override */

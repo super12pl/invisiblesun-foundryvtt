@@ -11,22 +11,25 @@
                     <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100"
                         width="100" />
                     <h4 class="charname flexcol">
-
                         <div class="flex-group-center">
                             A
-                            <input name="system.basic.foundation.value" placeholder="FOUNDATION"
+                            <input style="width:33%" name="system.basic.foundation.value" placeholder="FOUNDATION"
                                 value="{{system.basic.foundation.value}}" type="text" />
-                            <input name="system.basic.heart.value" placeholder="HEART"
+                            <input style="width:33%" name="system.basic.heart.value" placeholder="HEART"
                                 value="{{system.basic.heart.value}}" type="text" />
+                            <select style="width:33%;text-align:center" name="system.basic.order.value">
+                                {{#select system.basic.order.value}}
+                                <option value="vance">Vance</option>
+                                <option value="maker">Maker</option>
+                                <option value="weaver">Weaver</option>
+                                <option value="goetic">Goetic</option>
+                                <option value="apostate">Apostate</option>
+                                {{/select}}
+                            </select>
                         </div>
-                        <div class="flex-group-center">
-                            OF THE ORDER OF
-                            <input name="system.basic.order.value" type="text" placeholder="ORDER"
-                                value="{{system.basic.order.value}}" />
-                        </div>
-                        <div class="flex-group-center">
+                        <div class="flex-group-center" style="margin-left: -23px;">
                             WHO
-                            <input name="system.basic.forte.value" placeholder="FORTE"
+                            <input style="width: 80%;" name="system.basic.forte.value" placeholder="FORTE"
                                 value="{{system.basic.forte.value}}" type="text" />
                         </div>
                         <div class="flex-group-center">
@@ -52,7 +55,7 @@
                 <div class="resources grid grid-4col">
                     {{#each system.pools as |pool key|}}
                     <div class="resource flex-group-center flexcol {{key}}">
-                        <label class="resource-label">{{key}}</label>
+                        <label class="resource-label rollable" data-type="pool" data-pool="{{key}}">{{key}}</label>
                         <div class="resource-content flexrow flex-center flex-between">
                             <input class="value" type="number" name="system.pools.{{key}}.value" value="{{pool.value}}"
                                 data-dtype="Number" />
@@ -100,7 +103,8 @@
                         </div>
                     </li>
                     {{#each gear as |item id|}}
-                    <li class='item flexrow' data-item-id='{{item._id}}'>
+                    <li class='item flexrow rollable' data-item-id='{{item._id}}' data-type="item"
+                        data-level="{{item.system.level}}">
                         <div class='item-name'>
                             <div class='item-image'>
                                 <a class='rollable' data-roll-type='item'>

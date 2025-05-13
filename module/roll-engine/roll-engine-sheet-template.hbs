@@ -1,0 +1,38 @@
+<form class="flex-group-center roll-engine">
+    <div class="flexcol">
+        <h3>Difficulty</h3>
+        <input type="number" min="0" name="difficulty" value="{{difficulty}}">
+    </div>
+    <div class="flexcol">
+        <h3>Skill</h3>
+        <input type="number" min="0" name="skill" value="{{skill}}">
+    </div>
+    <div class="flexcol">
+        <h3>Tool</h3>
+        <input type="number" min="0" name="tool" value="{{tool}}">
+    </div>
+    <div class="flexcol">
+        <h3>Bene</h3>
+        <select name="pool">
+            {{#select pool}}
+            <option value="">-</option>
+            <option value="accurancy">Accurancy</option>
+            <option value="movement">Movement</option>
+            <option value="physicality">Physicality</option>
+            <option value="perception">Perception</option>
+            <option value="sorcery">Sorcery</option>
+            <option value="interaction">Interaction</option>
+            <option value="intellect">Intellect</option>
+            {{/select}}
+        </select>
+    </div>
+    <div class="flexcol">
+        <h3>Sortilege</h3>
+        <input type="checkbox" name="magic" {{#if magic}}checked{{/if}} />
+    </div>
+    <div class="flexcol">
+        <h3>Circuimstance</h3>
+        <input type="number" min="0" name="circuimstance" value="{{circuimstance}}">
+    </div>
+    <button style="width: auto;" class="rollBtn">Roll <i class="fa-solid fa-dice"></i></button>
+</form>
