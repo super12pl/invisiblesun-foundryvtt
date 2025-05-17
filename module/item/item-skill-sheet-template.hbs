@@ -1,0 +1,48 @@
+<form class='{{cssClass}}' autocomplete='off'>
+  <header class='sheet-header'>
+    <img class='profile-img' src='{{item.img}}' data-edit='img' title='{{item.name}}' />
+    <div class='header-fields'>
+      <h1 class='charname'><input name='name' type='text' value='{{item.name}}' placeholder='Name' /></h1>
+      <div class='grid grid-2col'>
+        <div class='resource'>
+          <label class='resource-label'>Level</label>
+          <select name="system.level" data-dtype="Number">
+            {{#select system.level}}
+            <option value="0">0</option>
+            <option value="1">1 (Familiar)</option>
+            <option value="2">2 (Practiced)</option>
+            <option value="3">3 (Trained)</option>
+            <option value="4">4 (Specialized)</option>
+            {{/select}}
+          </select>
+        </div>
+        <div class='resource'>
+          <label class='resource-label'>Skill type</label>
+          <select name="system.skillType">
+            {{#select system.skillType}}
+            <option value="action">Action</option>
+            <option value="narrative">Narrative</option>
+            <option value="development">Development</option>
+            {{/select}}
+          </select>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  {{! Sheet Tab Navigation }}
+  <nav class='sheet-tabs tabs' data-group='primary'>
+    <a class='item' data-tab='description'>Description</a>
+  </nav>
+
+  {{! Sheet Body }}
+  <section class='sheet-body'>
+
+    {{! Description Tab }}
+    <div class='tab' data-group='primary' data-tab='description'>
+      {{! Editors must receive enriched text data from getData to properly handle rolls }}
+      {{editor system.description target="system.description" button=true engine='prosemirror' owner=owner
+      editable=true}}
+    </div>
+  </section>
+</form>

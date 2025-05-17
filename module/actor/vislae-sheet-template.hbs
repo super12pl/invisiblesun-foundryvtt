@@ -64,10 +64,12 @@
                                 data-dtype="Number" />
                         </div>
                         <div class="flex-group-center">
-                            <i class="add fa-item fa-regular fa-plus-square"></i>
-                            <i class="substract fa-item fa-regular fa-minus-square"></i>
-                            <i class="reset fas fa-sync-alt"></i>
+                            <i class="add fa-item fa-regular fa-plus-square" style="cursor: pointer;"></i>
+                            <i class="substract fa-item fa-regular fa-minus-square" style="cursor: pointer;"></i>
+                            <i class="reset fas fa-sync-alt" style="cursor: pointer;"></i>
                         </div>
+                        <input class="max" type="number" name="system.pools.{{key}}.vex" value="{{pool.vex}}"
+                            data-dtype="Number" placeholder="vex" />
                     </div>
                     {{/each}}
                 </div>
@@ -81,6 +83,8 @@
     <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="description">Notes</a>
         <a class="item" data-tab="items">Items</a>
+        <a class="item" data-tab="skills">Skills</a>
+        <a class="item" data-tab="abilities">Abilities</a>
     </nav>
 
     {{!-- Sheet Body --}}
@@ -103,13 +107,11 @@
                         </div>
                     </li>
                     {{#each gear as |item id|}}
-                    <li class='item flexrow rollable' data-item-id='{{item._id}}' data-type="item"
-                        data-level="{{item.system.level}}">
-                        <div class='item-name'>
+                    <li class='item flexrow' data-item-id='{{item._id}}'>
+                        <div class='item-name rollable' data-type='item' data-item-id='{{item._id}}'
+                            data-level="{{item.system.level}}">
                             <div class='item-image'>
-                                <a class='rollable' data-roll-type='item'>
-                                    <img src='{{item.img}}' title='{{item.name}}' width='24' height='24' />
-                                </a>
+                                <img src='{{item.img}}' title='{{item.name}}' width='24' height='24' />
                             </div>
                             <h4>{{item.name}}</h4>
                         </div>
@@ -130,6 +132,157 @@
                             </a>
                             <a class="item-control item-chat">
                                 <i class="fas fa-comment-alt"></i>
+                            </a>
+                            <a class="item-control rollable" data-item-id='{{item._id}}' data-type="item"
+                                data-level="{{item.system.level}}">
+                                <i class="fas fa-dice"></i>
+                            </a>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ol>
+        </section>
+        <section class="tab skills" data-group="primary" data-tab="skills">
+            <div class="items flexcol">
+                <ol class='items-list'>
+                    <li class='item flexrow items-header'>
+                        <div class='item-name'>Name</div>
+                        <div class="item-resource">Level</div>
+                        <div class='item-controls'>
+                            <a class='item-control item-create' data-type='skill'>
+                                <i class='fas fa-plus'></i>
+                            </a>
+                        </div>
+                    </li>
+                    <h4 style="width: 100%">-- Action Skills --</h4>
+                    {{#each skills.[0] as |item id|}}
+                    <li class='item flexrow' data-item-id='{{item._id}}'>
+                        <div class='item-name rollable' data-type='skill' data-item-id='{{item._id}}'
+                            data-level="{{item.system.level}}">
+                            <div class='item-image'>
+                                <img src='{{item.img}}' title='{{item.name}}' width='24' height='24' />
+                            </div>
+                            <h4>{{item.name}}</h4>
+                        </div>
+                        <div class="item-name">
+                            <h4>{{item.system.level}}</h4>
+                        </div>
+                        <div class='item-controls'>
+                            <a class='item-control item-edit'>
+                                <i class='fas fa-edit'></i>
+                            </a>
+                            <a class='item-control item-delete'>
+                                <i class='fas fa-trash'></i>
+                            </a>
+                            <a class="item-control item-chat">
+                                <i class="fas fa-comment-alt"></i>
+                            </a>
+                            <a class="item-control rollable" data-item-id='{{item._id}}' data-type="skill"
+                                data-level="{{item.system.level}}">
+                                <i class="fas fa-dice"></i>
+                            </a>
+                        </div>
+                    </li>
+                    {{/each}}
+                    <h4 style="width: 100%">-- Narrative Skills --</h4>
+                    {{#each skills.[1] as |item id|}}
+                    <li class='item flexrow' data-item-id='{{item._id}}'>
+                        <div class='item-name rollable' data-type='skill' data-item-id='{{item._id}}'
+                            data-level="{{item.system.level}}">
+                            <div class='item-image'>
+                                <img src='{{item.img}}' title='{{item.name}}' width='24' height='24' />
+                            </div>
+                            <h4>{{item.name}}</h4>
+                        </div>
+                        <div class="item-name">
+                            <h4>{{item.system.level}}</h4>
+                        </div>
+                        <div class='item-controls'>
+                            <a class='item-control item-edit'>
+                                <i class='fas fa-edit'></i>
+                            </a>
+                            <a class='item-control item-delete'>
+                                <i class='fas fa-trash'></i>
+                            </a>
+                            <a class="item-control item-chat">
+                                <i class="fas fa-comment-alt"></i>
+                            </a>
+                            <a class="item-control rollable" data-item-id='{{item._id}}' data-type="skill"
+                                data-level="{{item.system.level}}">
+                                <i class="fas fa-dice"></i>
+                            </a>
+                        </div>
+                    </li>
+                    {{/each}}
+                    <h4 style="width: 100%">-- Development Skills --</h4>
+                    {{#each skills.[2] as |item id|}}
+                    <li class='item flexrow' data-item-id='{{item._id}}'>
+                        <div class='item-name rollable' data-type='skill' data-item-id='{{item._id}}'
+                            data-level="{{item.system.level}}">
+                            <div class='item-image'>
+                                <img src='{{item.img}}' title='{{item.name}}' width='24' height='24' />
+                            </div>
+                            <h4>{{item.name}}</h4>
+                        </div>
+                        <div class="item-name">
+                            <h4>{{item.system.level}}</h4>
+                        </div>
+                        <div class='item-controls'>
+                            <a class='item-control item-edit'>
+                                <i class='fas fa-edit'></i>
+                            </a>
+                            <a class='item-control item-delete'>
+                                <i class='fas fa-trash'></i>
+                            </a>
+                            <a class="item-control item-chat">
+                                <i class="fas fa-comment-alt"></i>
+                            </a>
+                            <a class="item-control rollable" data-item-id='{{item._id}}' data-type="skill"
+                                data-level="{{item.system.level}}">
+                                <i class="fas fa-dice"></i>
+                            </a>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ol>
+        </section>
+        <section class="tab items" data-group="primary" data-tab="abilities">
+            <div class="items flexcol">
+                <ol class='items-list'>
+                    <li class='item flexrow items-header'>
+                        <div class='item-name'>Name</div>
+                        <div class="item-resource">Level</div>
+                        <div class='item-controls'>
+                            <a class='item-control item-create' data-type='ability'>
+                                <i class='fas fa-plus'></i>
+                            </a>
+                        </div>
+                    </li>
+                    {{#each abilities as |item id|}}
+                    <li class='item flexrow' data-item-id='{{item._id}}'>
+                        <div class='item-name rollable' data-type='ability' data-item-id='{{item._id}}'
+                            data-level="{{item.system.level}}">
+                            <div class='item-image'>
+                                <img src='{{item.img}}' title='{{item.name}}' width='24' height='24' />
+                            </div>
+                            <h4>{{item.name}}</h4>
+                        </div>
+                        <div class="item-name">
+                            <h4>{{item.system.level}}</h4>
+                        </div>
+                        <div class='item-controls'>
+                            <a class='item-control item-edit'>
+                                <i class='fas fa-edit'></i>
+                            </a>
+                            <a class='item-control item-delete'>
+                                <i class='fas fa-trash'></i>
+                            </a>
+                            <a class="item-control item-chat">
+                                <i class="fas fa-comment-alt"></i>
+                            </a>
+                            <a class="item-control rollable" data-item-id='{{item._id}}' data-type="ability"
+                                data-level="{{item.system.level}}">
+                                <i class="fas fa-dice"></i>
                             </a>
                         </div>
                     </li>

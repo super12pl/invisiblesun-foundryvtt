@@ -1,15 +1,18 @@
-<form class="flex-group-center roll-engine">
+<form class="flex-group-center roll-engine" style="justify-content:start;">
     <div class="flexcol">
         <h3>Difficulty</h3>
-        <input type="number" min="0" name="difficulty" value="{{difficulty}}">
+        <input type="number" min="0" name="difficulty" placeholder="Difficulty" value="{{difficulty}}">
     </div>
     <div class="flexcol">
-        <h3>Skill</h3>
-        <input type="number" min="0" name="skill" value="{{skill}}">
-    </div>
-    <div class="flexcol">
-        <h3>Tool</h3>
-        <input type="number" min="0" name="tool" value="{{tool}}">
+        <h3>Modifiers</h3>
+        <div class="flex-group-center">
+            <input type="number" placeholder="Skill" name="skill" value="{{skill}}">
+            <input type="number" placeholder="Tool" name="tool" value="{{tool}}">
+        </div>
+        <div class="flex-group-center">
+            <input type="number" placeholder="Magic" name="magic" value="{{magic}}">
+            <input type="number" placeholder="Other" name="circuimstance" value="{{circuimstance}}">
+        </div>
     </div>
     <div class="flexcol">
         <h3>Bene</h3>
@@ -25,14 +28,20 @@
             <option value="intellect">Intellect</option>
             {{/select}}
         </select>
+        <div class="flex-group-center">
+            <input type="number" placeholder="Task" name="beneTask" value="{{beneTask}}">
+            <input type="number" placeholder="Effect" name="beneEffect" value="{{beneEffect}}">
+        </div>
     </div>
-    <div class="flexcol">
+    <div class="flexcolcenter customcheckbox">
+        <h3>Spell</h3>
+        <input type="checkbox" name="spell" {{#if spell}}checked{{/if}} />
+        <span class="checkmark">+die</span>
+    </div>
+    <div class="flexcolcenter customcheckbox">
         <h3>Sortilege</h3>
-        <input type="checkbox" name="magic" {{#if magic}}checked{{/if}} />
-    </div>
-    <div class="flexcol">
-        <h3>Circuimstance</h3>
-        <input type="number" min="0" name="circuimstance" value="{{circuimstance}}">
+        <input type="checkbox" name="sortilege" {{#if sortilege}}checked{{/if}} />
+        <span class="checkmark">+die</span>
     </div>
     <button style="width: auto;" class="rollBtn">Roll <i class="fa-solid fa-dice"></i></button>
 </form>

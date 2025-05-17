@@ -409,18 +409,26 @@
     border: none;
 }
 
-.roll-engine .flexcol {
-    height: 60px;
-}
-
-.roll-engine .flexcol>* {
-    height: 30px;
-}
-
 .flexcolcenter {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     flex-direction: column;
+}
+
+.checkmark {
+    display: none;
+}
+
+.customcheckbox input:checked~.checkmark {
+    display: block;
+}
+
+.customcheckbox input {
+    margin-bottom: 20px;
+}
+
+.customcheckbox input:checked {
+    margin-bottom: 0px;
 }

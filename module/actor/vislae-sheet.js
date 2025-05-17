@@ -16,8 +16,8 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
             classes: ["invisiblesun", "sheet", "actor"],
             template: "systems/invisiblesun/module/actor/vislae-sheet-template.hbs",
             width: 600,
-            height: 700,
-            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "features" }]
+            height: 800,
+            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body" }]
         });
     }
     /** @override */
@@ -29,17 +29,38 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
         context.rollData = context.actor.getRollData();
         if (actorData.type == "vislae") {
             const gear = [];
+            const abilities = [];
+            const skills = [[], [], []];
             // Iterate through items, allocating to containers
             for (let i of context.items) {
                 i.img = i.img || DEFAULT_TOKEN;
                 // Append to gear.
-                if (i.type === 'item') {
-                    gear.push(i);
+                switch (i.type) {
+                    case "item":
+                        gear.push(i);
+                        break
+                    case "ability":
+                        abilities.push(i)
+                        break
+                    case "skill":
+                        switch (i.system.skillType) {
+                            case "action":
+                                skills[0].push(i)
+                                break
+                            case "narrative":
+                                skills[1].push(i)
+                                break
+                            case "development":
+                                skills[2].push(i)
+                                break
+                        }
+                        break
                 }
             }
-
             // Assign and return
             context.gear = gear;
+            context.abilities = abilities
+            context.skills = skills
         }
 
         return context
@@ -59,8 +80,6 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
             type: type,
             data: data
         };
-        // Remove the type from the dataset since it's in the itemData.type prop.
-        delete itemData.data["type"];
 
         // Finally, create the item!
         return await Item.create(itemData, { parent: this.actor });

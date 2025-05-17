@@ -41,35 +41,43 @@
       "pools": {
         "accurancy": {
           "value": 0,
-          "max": 0
+          "max": 0,
+          "vex": ""
         },
         "movement": {
           "value": 0,
-          "max": 0
+          "max": 0,
+          "vex": ""
         },
         "sorcery": {
           "value": 0,
-          "max": 0
+          "max": 0,
+          "vex": ""
         },
         "interaction": {
           "value": 0,
-          "max": 0
+          "max": 0,
+          "vex": ""
         },
         "physicality": {
           "value": 0,
-          "max": 0
+          "max": 0,
+          "vex": ""
         },
         "perception": {
           "value": 0,
-          "max": 0
+          "max": 0,
+          "vex": ""
         },
         "intellect": {
           "value": 0,
-          "max": 0
+          "max": 0,
+          "vex": ""
         },
         "sortilege": {
           "value": 0,
-          "max": 0
+          "max": 0,
+          "vex": ""
         }
       }
     },
@@ -108,7 +116,9 @@
   },
   "Item": {
     "types": [
-      "item"
+      "item",
+      "ability",
+      "skill"
     ],
     "templates": {
       "base": {
@@ -124,6 +134,17 @@
         "value": 0,
         "min": 0
       }
+    },
+    "skill": {
+      "templates": [
+        "base"
+      ],
+      "skillType": "action"
+    },
+    "ability": {
+      "templates": [
+        "base"
+      ]
     }
   }
 }

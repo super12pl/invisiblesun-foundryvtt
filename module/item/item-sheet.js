@@ -1,7 +1,11 @@
 /** 
 @extends {ItemSheet}
 **/
-
+window.Handlebars.registerHelper('select', function (value, options) {
+    var $el = $('<select />').html(options.fn(this));
+    $el.find('[value="' + value + '"]').attr({ 'selected': 'selected' });
+    return $el.html();
+});
 export class InvisibleSunItemSheet extends ItemSheet {
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
