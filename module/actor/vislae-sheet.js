@@ -17,11 +17,16 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["invisiblesun", "sheet", "actor"],
-            template: "systems/invisiblesun/module/actor/vislae-sheet-template.hbs",
             width: 600,
             height: 800,
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body" }]
         });
+    }
+    /** @override */
+    get template() {
+        const path = 'systems/invisiblesun/module/actor';
+        console.log(`${path}/${this.actor.type}-sheet-template.hbs`)
+        return `${path}/${this.actor.type}-sheet-template.hbs`;
     }
     /** @override */
     getData() {
@@ -88,6 +93,14 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
             context.armors = armors
             context.totalArmor = totalArmor
         }
+        if (actorData.type == "npc") {
+            const items = []
+            for (let i of context.items) {
+                i.img = i.img || DEFAULT_TOKEN;
+                items.push(i)
+            }
+            context.items = items
+        }
 
         return context
     }
@@ -118,7 +131,7 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
             let roll = new Roll("d10-1", this.actor.getRollData());
             await roll.evaluate()
             var depleted = false
-            console.log(this.actor.items.get(dataset.itemId).system.depletion.split(","),roll.total.toString())
+            console.log(this.actor.items.get(dataset.itemId).system.depletion.split(","), roll.total.toString())
             if (this.actor.items.get(dataset.itemId).system.depletion.split(",").includes(roll.total.toString())) {
                 depleted = true
             }

@@ -1,0 +1,102 @@
+<form class="flexcol" autocomplete="off">
+    <header class="sheet-header">
+        <div class="header-fields">
+            <div class="charname flexcol">
+                <input style="width:100%;font-weight:bold;" name="name" type="text" value="{{actor.name}}"
+                    placeholder="Name" />
+                <div class="flex-group-center">
+                    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100"
+                        width="100" />
+                    <h4 class="charname flexcol">
+                        <div class="flex-group-center">
+                            <label class="flexcol">Level<input type="number" name="system.level"
+                                    value="{{system.level}}"></label>
+                        </div>
+                    </h4>
+                </div>
+                <div class="flex-group-center">
+                    <div class="flex-group-center flexcol">
+                        <label class="resource-label">Injuries</label>
+                        <div class="resource-content flexrow flex-center flex-between">
+                            <input class="value" type="number" name="system.combat.damageTrack.injuries"
+                                value="{{system.combat.damageTrack.injuries}}" />
+                            <span class="resouce-content"> / </span>
+                            <input class="max" type="number" name="system.maximumInjuries"
+                                value="{{system.maximumInjuries}}" />
+                        </div>
+                    </div>
+                    <div class="flex-group-center flexcol">
+                        <label class="resource-label">Wounds</label>
+                        <div class="resource-content flexrow flex-center flex-between">
+                            <input class="value" type="number" name="system.combat.damageTrack.wounds"
+                                value="{{system.combat.damageTrack.wounds}}" />
+                            <span class="resouce-content"> / </span>
+                            <input class="max" type="number" name="system.maximumWounds"
+                                value="{{system.maximumWounds}}" />
+                        </div>
+                    </div>
+                    <div class="flex-group-center flexcol">
+                        <label class="resource-label">Anguish</label>
+                        <div class="resource-content flexrow flex-center flex-between">
+                            <input class="value" type="number" name="system.combat.damageTrack.anguish"
+                                value="{{system.combat.damageTrack.anguish}}" />
+                            <span class="resouce-content"> / </span>
+                            <input class="max" type="number" name="system.maximumAnguish"
+                                value="{{system.maximumAnguish}}" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="description">Notes</a>
+        <a class="item" data-tab="items">Items</a>
+    </nav>
+    <section class="sheet-body">
+        <section class="tab description" data-group="primary" data-tab="description">
+            {{editor system.notes target="system.notes" button=true engine='prosemirror' owner=owner
+            editable=true}}
+        </section>
+         <section class="tab items" data-group="primary" data-tab="items">
+            <div class="items flexcol">
+                <ol class='items-list'>
+                    <li class='item flexrow items-header'>
+                        <div class='item-name'>Name</div>
+                        <div class="item-resource">Level</div>
+                        <div class='item-controls'>
+                            <a class='item-control item-create' data-type='item'>
+                                <i class='fas fa-plus'></i>
+                            </a>
+                        </div>
+                    </li>
+                    {{#each items as |item id|}}
+                    <li class='item flexrow' data-item-id='{{item._id}}'>
+                        <div class='item-name' data-level="{{item.system.level}}">
+                            <div class='item-image'>
+                                <img src='{{item.img}}' title='{{item.name}}' width='24' height='24' />
+                            </div>
+                            <h4>{{item.name}}</h4>
+                        </div>
+                        <div class="item-name">
+                            <h4>{{item.system.level}}</h4>
+                        </div>
+                        <div class='item-controls'>
+                            <a class='item-control item-edit' title="Edit item">
+                                <i class='fas fa-edit'></i>
+                            </a>
+                            <a class='item-control item-delete' title="Delete item permanently">
+                                <i class='fas fa-trash'></i>
+                            </a>
+                            <a class="item-control item-chat" title="Post item to chat">
+                                <i class="fas fa-comment-alt"></i>
+                            </a>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ol>
+            </div>
+        </section>
+    </section>
+</form>

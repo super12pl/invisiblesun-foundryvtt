@@ -37,8 +37,10 @@
                                     value="{{system.stats.degree.value}}" type="number" /></label>
                             <label>Acumen <input style="width: 40px;" name="system.stats.acumen.value"
                                     value="{{system.stats.acumen.value}}" type="number" /></label>
-                            <label>Crux <input style="width: 40px;" name="system.stats.crux.value"
-                                    value="{{system.stats.crux.value}}" type="number" /></label>
+                            <label>Joy <input style="width: 40px;" name="system.stats.joy" value="{{system.stats.joy}}"
+                                    type="number" /></label>
+                            <label>Despair <input style="width: 40px;" name="system.stats.despair" value="{{system.stats.despair}}"
+                                    type="number" /></label>
                             <label>Hidden Knowledge <input style="width: 40px;"
                                     name="system.stats.hiddenKnowledge.value"
                                     value="{{system.stats.hiddenKnowledge.value}}" type="number" /></label>
@@ -80,7 +82,7 @@
     </header>
 
     {{!-- Sheet Tab Navigation --}}
-    <nav class="sheet-tabs tabs" data-group="primary">
+    <nav class="sheet-tabs tabs" data-group="primary" style="margin-top: -30px;">
         <a class="item" data-tab="description">Notes</a>
         <a class="item" data-tab="combat">Combat</a>
         <a class="item" data-tab="items">Items</a>

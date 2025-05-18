@@ -13,7 +13,6 @@ export class InvisibleSunVislaeActor extends Actor {
                 }
             }
         }
-
         super.prepareDerivedData()
     }
 }

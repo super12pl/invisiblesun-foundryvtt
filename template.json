@@ -1,7 +1,8 @@
 {
   "Actor": {
     "types": [
-      "vislae"
+      "vislae",
+      "npc"
     ],
     "vislae": {
       "basic": {
@@ -28,9 +29,8 @@
         "acumen": {
           "value": 0
         },
-        "crux": {
-          "value": 0
-        },
+        "joy": 0,
+        "despair": 0,
         "hiddenKnowledge": {
           "value": 0
         },
@@ -79,23 +79,31 @@
           "max": 0,
           "vex": ""
         }
+      },
+      "combat": {
+        "recoveries": {
+          "oneAction1": false,
+          "oneAction2": false,
+          "tenMinutes": false,
+          "oneHour": false
+        }
+      },
+      "equipment": {
+        "ephemeraLimit": 2
       }
     },
     "combat": {
-      "recoveries": {
-        "oneAction1": false,
-        "oneAction2": false,
-        "tenMinutes": false,
-        "oneHour": false
-      },
       "damageTrack": {
         "injuries": 0,
         "wounds": 0,
         "anguish": 0
       }
     },
-    "equipment": {
-      "ephemeraLimit": 2
+    "npc": {
+      "level": 0,
+      "maxInjutries": 0,
+      "maxWounds": 0,
+      "maxAnguish": 0
     },
     "notes": "",
     "gmNotes": ""
