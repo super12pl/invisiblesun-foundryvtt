@@ -9,6 +9,9 @@ window.Handlebars.registerHelper('select', function (value, options) {
     $el.find('[value="' + value + '"]').attr({ 'selected': 'selected' });
     return $el.html();
 });
+window.Handlebars.registerHelper('sum', function (num1, num2) {
+    return num1 + num2
+})
 export class InvisibleSunVislaeActorSheet extends ActorSheet {
     /** @override */
     static get defaultOptions() {
@@ -31,6 +34,11 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
             const gear = [];
             const abilities = [];
             const skills = [[], [], []];
+            const ephemera = []
+            const objectsOfPower = []
+            const attacks = []
+            const armors = []
+            var totalArmor = 0
             // Iterate through items, allocating to containers
             for (let i of context.items) {
                 i.img = i.img || DEFAULT_TOKEN;
@@ -55,12 +63,30 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
                                 break
                         }
                         break
+                    case "attack":
+                        attacks.push(i)
+                        break
+                    case "ephemera":
+                        ephemera.push(i)
+                        break
+                    case "objectOfPower":
+                        objectsOfPower.push(i)
+                        break
+                    case "armor":
+                        totalArmor += i.system.value
+                        armors.push(i)
+                        break
                 }
             }
             // Assign and return
             context.gear = gear;
             context.abilities = abilities
             context.skills = skills
+            context.ephemera = ephemera
+            context.objectsOfPower = objectsOfPower
+            context.attacks = attacks
+            context.armors = armors
+            context.totalArmor = totalArmor
         }
 
         return context
@@ -88,8 +114,24 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
         event.preventDefault()
         const element = event.currentTarget
         const dataset = element.dataset
+        if (Object.hasOwn(dataset, "depletion")) {
+            let roll = new Roll("d10-1", this.actor.getRollData());
+            await roll.evaluate()
+            var depleted = false
+            console.log(this.actor.items.get(dataset.itemId).system.depletion.split(","),roll.total.toString())
+            if (this.actor.items.get(dataset.itemId).system.depletion.split(",").includes(roll.total.toString())) {
+                depleted = true
+            }
+            roll.toMessage({
+                speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+                flavor: `<div class='flexcolcenter'><h1>${this.actor.items.get(dataset.itemId).name} depletion roll</h1><h2>${depleted ? 'Depleted!' : "Not depleted!"}</h2></div>`,
+                rollMode: game.settings.get('core', 'rollMode'),
+            });
+        }
+        else {
+            rollEngineForm({ actor: this.actor, dataset: dataset, sheet: this })
+        }
 
-        rollEngineForm({ actor: this.actor, dataset: dataset, sheet: this })
 
     }
 
@@ -152,7 +194,16 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
         })
 
         html.on('click', '.rollable', this._onRoll.bind(this));
-
+        html.on('click', '.sleep', (ev) => {
+            html.find(".resource").each(function () {
+                let resourceValue = $(this).find(".value")
+                let resourceMax = $(this).find(".max")
+                resourceValue.val(resourceMax.val())
+            })
+            html.find(".recovery").each(function () {
+                $(this)[0].checked = false
+            })
+        })
 
 
         if (this.actor.isOwner) {

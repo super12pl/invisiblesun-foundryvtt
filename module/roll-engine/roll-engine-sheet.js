@@ -29,10 +29,15 @@ export class RollEngineDialogSheet extends FormApplication {
     getData() {
         // Basic data
         const data = super.getData().object;
-        data.label = game.actors.get(data.actor._id).items.get(data.dataset.itemId).name
+        if (data.dataset.type != "pool") {
+            data.item = game.actors.get(data.actor._id).items.get(data.dataset.itemId)
+            console.log(data.item)
+            data.label = data.item.name
+        }
         data.pool = ""
         data.spell = false
         data.sortilege = false
+        data.attack = false
         switch (data.dataset.type) {
             case "skill":
                 data.skill = parseInt(data.dataset.level)
@@ -40,7 +45,14 @@ export class RollEngineDialogSheet extends FormApplication {
             case "item":
                 data.tool = parseInt(data.dataset.level)
                 break
+            case "ephemera":
+                data.tool = parseInt(data.dataset.level)
+                break
+            case "objectOfPower":
+                data.tool = parseInt(data.dataset.level)
+                break
             case "pool":
+                data.label = data.dataset.pool
                 if (data.dataset.pool == "sortilege") {
                     data.sortilege = true
                 }
@@ -51,6 +63,11 @@ export class RollEngineDialogSheet extends FormApplication {
             case "ability":
                 data.spell = true
                 break
+            case "attack":
+                data.attack = true
+                data.damage = data.item.system.damage
+                data.skill = data.item.system.skill
+                data.tool = data.item.system.weapon
         }
         return data
     }
@@ -86,13 +103,22 @@ export class RollEngineDialogSheet extends FormApplication {
                 }
             }
             if (data.pool.length > 0) {
-                game.actors.get(data.actor._id).system.pools[data.pool].value -= (data.beneTask + data.beneEffect)
+                game.actors.get(data.actor._id).system.pools[data.pool].value -= getNum(data.beneTask + data.beneEffect)
             }
-            roll.toMessage({
-                speaker: ChatMessage.getSpeaker({ actor: data.actor }),
-                flavor: `<div class='flexcolcenter'><h1>${data.label}</h1><h2>Difficulty: ${difficulty}<h2><h2>${successes} successes</h2>${data.beneEffect ? `<h2>Bene used for effect: ${data.beneEffect}</h2>` : ""}<h2>${"Magical Flux!".repeat(fluxes)}</h2><h3>Venture: ${venture}</h3></div>`,
-                rollMode: game.settings.get('core', 'rollMode'),
-            });
+            if (data.attack) {
+                roll.toMessage({
+                    speaker: ChatMessage.getSpeaker({ actor: data.actor }),
+                    flavor: `<div class='flexcolcenter'><h1>${data.label}</h1><h2>Difficulty: ${difficulty}<h2><h2>${successes} successes</h2><h2>Damage: ${data.damage + getNum(data.beneEffect) * 2}</h2><h2>${"Magical Flux!".repeat(fluxes)}</h2><h3>Venture: ${venture}</h3></div>`,
+                    rollMode: game.settings.get('core', 'rollMode'),
+                });
+            }
+            else {
+                roll.toMessage({
+                    speaker: ChatMessage.getSpeaker({ actor: data.actor }),
+                    flavor: `<div class='flexcolcenter'><h1>${data.label}</h1><h2>Difficulty: ${difficulty}<h2><h2>${successes} successes</h2>${data.beneEffect ? `<h2>Bene used for effect: ${data.beneEffect}</h2>` : ""}<h2>${"Magical Flux!".repeat(fluxes)}</h2><h3>Venture: ${venture}</h3></div>`,
+                    rollMode: game.settings.get('core', 'rollMode'),
+                });
+            }
             data.sheet.render()
             this.close()
         })

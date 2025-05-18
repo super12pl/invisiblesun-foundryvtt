@@ -1,0 +1,17 @@
+<form class='{{cssClass}}' autocomplete='off'>
+  <header class='sheet-header'>
+    <div class='header-fields'>
+      <h1 class='charname'><input name='name' type='text' value='{{item.name}}' placeholder='Name' /></h1>
+      <div class='grid grid-4col'>
+        <div class='resource'>
+          <label class='resource-label'>Armor value</label>
+          <input type='number' name='system.value' value='{{system.value}}' data-dtype='Number' />
+        </div>
+        <div class='resource'>
+          <label class='resource-label'>Additional Properties</label>
+          <input type='text' name='system.properties' value='{{system.properties}}' />
+        </div>
+      </div>
+    </div>
+  </header>
+</form>
