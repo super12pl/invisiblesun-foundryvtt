@@ -8,6 +8,10 @@
           <label class='resource-label'>Level</label>
           <input type='text' name='system.level' value='{{system.level}}' data-dtype='Number' />
         </div>
+        <div class='resource'>
+          <label class='resource-label'>+1 die</label>
+          <input type='checkbox' name='system.addDie' {{#if system.addDie}}checked {{/if}} />
+        </div>
       </div>
     </div>
   </header>

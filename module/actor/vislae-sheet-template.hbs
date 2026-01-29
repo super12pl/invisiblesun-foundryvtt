@@ -1,4 +1,4 @@
-<form class="flexcol" autocomplete="off">
+<form class="flexcol" autocomplete="off" editable="true">
 
     {{!-- Sheet Header --}}
     <header class="sheet-header">
@@ -39,8 +39,8 @@
                                     value="{{system.stats.acumen.value}}" type="number" /></label>
                             <label>Joy <input style="width: 40px;" name="system.stats.joy" value="{{system.stats.joy}}"
                                     type="number" /></label>
-                            <label>Despair <input style="width: 40px;" name="system.stats.despair" value="{{system.stats.despair}}"
-                                    type="number" /></label>
+                            <label>Despair <input style="width: 40px;" name="system.stats.despair"
+                                    value="{{system.stats.despair}}" type="number" /></label>
                             <label>Hidden Knowledge <input style="width: 40px;"
                                     name="system.stats.hiddenKnowledge.value"
                                     value="{{system.stats.hiddenKnowledge.value}}" type="number" /></label>
@@ -70,8 +70,12 @@
                             <i class="substract fa-item fa-regular fa-minus-square" style="cursor: pointer;"></i>
                             <i class="reset fas fa-sync-alt" style="cursor: pointer;"></i>
                         </div>
-                        <input class="max" type="number" name="system.pools.{{key}}.vex" value="{{pool.vex}}"
-                            data-dtype="Number" placeholder="vex" />
+                        <div class="flex-group-center">
+                            <input class="max" type="number" name="system.pools.{{key}}.vex" value="{{pool.vex}}"
+                                data-dtype="Number" placeholder="vex" />
+                            <input class="max" type="number" name="system.pools.{{key}}.scourge"
+                                value="{{pool.scourge}}" data-dtype="Number" placeholder="scourge" />
+                        </div>
                     </div>
                     {{/each}}
                 </div>
@@ -87,12 +91,12 @@
         <a class="item" data-tab="combat">Combat</a>
         <a class="item" data-tab="items">Items</a>
         <a class="item" data-tab="skills">Skills</a>
-        <a class="item" data-tab="abilities">Abilities</a>
+        <a class="item" data-tab="abilities">Abilities/Spells</a>
     </nav>
 
     {{!-- Sheet Body --}}
     <section class="sheet-body">
-        <section class="tab description" data-group="primary" data-tab="description">
+        <section class="tab" data-group="primary" data-tab="description">
             {{editor system.notes target="system.notes" button=true engine='prosemirror' owner=owner
             editable=true}}
         </section>

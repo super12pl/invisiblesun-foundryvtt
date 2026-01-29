@@ -38,18 +38,18 @@ export class RollEngineDialogSheet extends FormApplication {
         data.spell = false
         data.sortilege = false
         data.attack = false
-        switch (data.dataset.type) {
+        switch (data.item.type) {
             case "skill":
-                data.skill = parseInt(data.dataset.level)
+                data.skill = parseInt(data.item.system.level)
                 break
             case "item":
-                data.tool = parseInt(data.dataset.level)
+                data.tool = parseInt(data.item.system.level)
                 break
             case "ephemera":
-                data.tool = parseInt(data.dataset.level)
+                data.tool = parseInt(data.item.system.level)
                 break
             case "objectOfPower":
-                data.tool = parseInt(data.dataset.level)
+                data.tool = parseInt(data.item.system.level)
                 break
             case "pool":
                 data.label = data.dataset.pool
@@ -61,7 +61,11 @@ export class RollEngineDialogSheet extends FormApplication {
                 }
                 break
             case "ability":
-                data.spell = true
+                data.spellCost = parseInt(data.dataset.level)
+                data.magic = data.spellCost
+                if (data.item.system.addDie) {
+                    data.spell = true
+                }
                 break
             case "attack":
                 data.attack = true
@@ -83,6 +87,7 @@ export class RollEngineDialogSheet extends FormApplication {
         data.difficulty = formData.difficulty
         data.beneTask = formData.beneTask
         data.beneEffect = formData.beneEffect
+        data.spellCost = formData.spellCost
     }
     activateListeners(html) {
         super.activateListeners(html)
@@ -105,6 +110,7 @@ export class RollEngineDialogSheet extends FormApplication {
             if (data.pool.length > 0) {
                 game.actors.get(data.actor._id).system.pools[data.pool].value -= getNum(data.beneTask + data.beneEffect)
             }
+            game.actors.get(data.actor._id).system.pools["sorcery"].value -= getNum(data.spellCost)
             if (data.attack) {
                 roll.toMessage({
                     speaker: ChatMessage.getSpeaker({ actor: data.actor }),

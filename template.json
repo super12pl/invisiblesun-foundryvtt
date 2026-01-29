@@ -4,7 +4,23 @@
       "vislae",
       "npc"
     ],
+    "templates": {
+      "base": {
+        "notes": "",
+        "gmNotes": "",
+        "combat": {
+          "damageTrack": {
+            "injuries": 0,
+            "wounds": 0,
+            "anguish": 0
+          }
+        }
+      }
+    },
     "vislae": {
+      "templates": [
+        "base"
+      ],
       "basic": {
         "foundation": {
           "value": ""
@@ -42,42 +58,50 @@
         "accurancy": {
           "value": 0,
           "max": 0,
-          "vex": ""
+          "vex": "",
+          "scourge": ""
         },
         "movement": {
           "value": 0,
           "max": 0,
-          "vex": ""
+          "vex": "",
+          "scourge": ""
         },
         "sorcery": {
           "value": 0,
           "max": 0,
-          "vex": ""
+          "vex": "",
+          "scourge": ""
         },
         "interaction": {
           "value": 0,
           "max": 0,
-          "vex": ""
+          "vex": "",
+          "scourge": ""
         },
         "physicality": {
           "value": 0,
           "max": 0,
-          "vex": ""
+          "vex": "",
+          "scourge": ""
         },
         "perception": {
           "value": 0,
           "max": 0,
-          "vex": ""
+          "vex": "",
+          "scourge": ""
         },
         "intellect": {
           "value": 0,
           "max": 0,
-          "vex": ""
+          "vex": "",
+          "scourge": ""
         },
         "sortilege": {
           "value": 0,
           "max": 0,
-          "vex": ""
+          "vex": "",
+          "scourge": ""
         }
       },
       "combat": {
@@ -92,21 +116,15 @@
         "ephemeraLimit": 2
       }
     },
-    "combat": {
-      "damageTrack": {
-        "injuries": 0,
-        "wounds": 0,
-        "anguish": 0
-      }
-    },
     "npc": {
+      "templates": [
+        "base"
+      ],
       "level": 0,
       "maxInjutries": 0,
       "maxWounds": 0,
       "maxAnguish": 0
-    },
-    "notes": "",
-    "gmNotes": ""
+    }
   },
   "Item": {
     "types": [
@@ -142,7 +160,8 @@
     "ability": {
       "templates": [
         "base"
-      ]
+      ],
+      "addDie": false
     },
     "attack": {
       "skill": 0,

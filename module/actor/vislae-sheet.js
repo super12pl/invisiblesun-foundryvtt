@@ -33,7 +33,7 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
         const context = super.getData()
         const actorData = context.data
         context.system = actorData.system
-        context.flags = actorData.flags.invisiblesun || {}
+        context.flags = actorData.flags
         context.rollData = context.actor.getRollData();
         if (actorData.type == "vislae") {
             const gear = [];
@@ -101,7 +101,6 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
             }
             context.items = items
         }
-
         return context
     }
     async _onItemCreate(event) {
@@ -150,6 +149,7 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
 
     /** @override */
     activateListeners(html) {
+        super.activateListeners(html);
         //pool buttons
         html.find(".resource").each(function () {
             let resourceValue = $(this).find(".value")
