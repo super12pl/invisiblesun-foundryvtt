@@ -8,8 +8,8 @@
     "verified": "12.331"
   },
   "url": "https://github.com/super12pl/invisiblesun-foundryvtt",
-  "manifest": "https://github.com/super12pl/invisiblesun-foundryvtt/releases/download/1.0.1/system.json",
-  "download": "https://github.com/super12pl/invisiblesun-foundryvtt/releases/download/1.0.1/release.zip",
+  "manifest": "https://github.com/super12pl/invisiblesun-foundryvtt/releases/latest/download/system.json",
+  "download": "https://github.com/super12pl/invisiblesun-foundryvtt/releases/latest/download/release.zip",
   "authors": [
     {
       "name": "super12pl",
