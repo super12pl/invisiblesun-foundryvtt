@@ -128,9 +128,9 @@
         "base"
       ],
       "level": 1,
-      "maxInjutries": 0,
-      "maxWounds": 0,
-      "maxAnguish": 0
+      "maxInjuries": 3,
+      "maxWounds": 1,
+      "maxAnguish": 1
     }
   },
   "Item": {
