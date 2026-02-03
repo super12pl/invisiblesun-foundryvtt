@@ -1,3 +1,8 @@
-2026/02/03-23:11:59.686 2578 Recovering log #7
-2026/02/03-23:11:59.688 2578 Delete type=0 #7
-2026/02/03-23:11:59.688 2578 Delete type=3 #4
+2026/02/04-00:35:09.607 3014 Log #13: 0 ops saved to Table #22 OK
+2026/02/04-00:35:09.607 3014 Archiving C:\Users\super\AppData\Local\FoundryVTT\Data\systems\invisiblesun\packs\ephemera/000013.log: OK
+2026/02/04-00:35:09.607 3014 Log #21: 0 ops saved to Table #23 OK
+2026/02/04-00:35:09.607 3014 Archiving C:\Users\super\AppData\Local\FoundryVTT\Data\systems\invisiblesun\packs\ephemera/000021.log: OK
+2026/02/04-00:35:09.608 3014 Table #9: 242 entries OK
+2026/02/04-00:35:09.609 3014 Archiving C:\Users\super\AppData\Local\FoundryVTT\Data\systems\invisiblesun\packs\ephemera/MANIFEST-000012: OK
+2026/02/04-00:35:09.609 3014 Archiving C:\Users\super\AppData\Local\FoundryVTT\Data\systems\invisiblesun\packs\ephemera/MANIFEST-000020: OK
+2026/02/04-00:35:09.611 3014 **** Repaired leveldb C:\Users\super\AppData\Local\FoundryVTT\Data\systems\invisiblesun\packs\ephemera; recovered 1 files; 79251 bytes. Some data may have been lost. ****

@@ -1,1 +1,9 @@
-2026/02/03-23:12:46.505 3420 Delete type=3 #1
+2026/02/04-00:35:09.624 5080 Log #6: 0 ops saved to Table #16 OK
+2026/02/04-00:35:09.625 5080 Archiving C:\Users\super\AppData\Local\FoundryVTT\Data\systems\invisiblesun\packs\objects-of-power/000006.log: OK
+2026/02/04-00:35:09.625 5080 Log #15: 0 ops saved to Table #17 OK
+2026/02/04-00:35:09.625 5080 Archiving C:\Users\super\AppData\Local\FoundryVTT\Data\systems\invisiblesun\packs\objects-of-power/000015.log: OK
+2026/02/04-00:35:09.626 5080 Table #5: 227 entries OK
+2026/02/04-00:35:09.626 5080 Table #13: 227 entries OK
+2026/02/04-00:35:09.627 5080 Archiving C:\Users\super\AppData\Local\FoundryVTT\Data\systems\invisiblesun\packs\objects-of-power/MANIFEST-000004: OK
+2026/02/04-00:35:09.628 5080 Archiving C:\Users\super\AppData\Local\FoundryVTT\Data\systems\invisiblesun\packs\objects-of-power/MANIFEST-000014: OK
+2026/02/04-00:35:09.629 5080 **** Repaired leveldb C:\Users\super\AppData\Local\FoundryVTT\Data\systems\invisiblesun\packs\objects-of-power; recovered 2 files; 207854 bytes. Some data may have been lost. ****

@@ -1,3 +1,8 @@
-2026/02/03-23:11:59.675 2e3c Recovering log #36
-2026/02/03-23:11:59.678 2e3c Delete type=0 #36
-2026/02/03-23:11:59.678 2e3c Delete type=3 #34
+2026/02/04-00:35:09.571 5080 Log #41: 0 ops saved to Table #50 OK
+2026/02/04-00:35:09.571 5080 Archiving C:\Users\super\AppData\Local\FoundryVTT\Data\systems\invisiblesun\packs\the-endless-grimoire/000041.log: OK
+2026/02/04-00:35:09.571 5080 Log #49: 0 ops saved to Table #51 OK
+2026/02/04-00:35:09.572 5080 Archiving C:\Users\super\AppData\Local\FoundryVTT\Data\systems\invisiblesun\packs\the-endless-grimoire/000049.log: OK
+2026/02/04-00:35:09.572 5080 Table #11: 340 entries OK
+2026/02/04-00:35:09.573 5080 Archiving C:\Users\super\AppData\Local\FoundryVTT\Data\systems\invisiblesun\packs\the-endless-grimoire/MANIFEST-000040: OK
+2026/02/04-00:35:09.573 5080 Archiving C:\Users\super\AppData\Local\FoundryVTT\Data\systems\invisiblesun\packs\the-endless-grimoire/MANIFEST-000048: OK
+2026/02/04-00:35:09.575 5080 **** Repaired leveldb C:\Users\super\AppData\Local\FoundryVTT\Data\systems\invisiblesun\packs\the-endless-grimoire; recovered 1 files; 141397 bytes. Some data may have been lost. ****
