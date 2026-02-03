@@ -21,6 +21,9 @@ window.Handlebars.registerHelper("greq", function (num1, num2) {
 window.Handlebars.registerHelper("capitalize", function (str) {
     return str.capitalize()
 })
+window.Handlebars.registerHelper("leeq", function (num1, num2) {
+    return num1 <= num2
+})
 
 //vance diagram sizes
 window.Handlebars.registerHelper("diagramSize", function (degree) {
@@ -65,6 +68,53 @@ window.Handlebars.registerHelper("spellSize", function (spellClass, halfSize) {
             else {
                 return "width:640px;height:640px"
             }
+    }
+})
+
+
+
+//maker buttons
+window.Handlebars.registerHelper("showStart", function (stage) {
+    return stage == 0
+})
+window.Handlebars.registerHelper("showDone", function (stage) {
+    return stage == 1 || stage == 3 || stage == 5 || stage == 7 || stage == 9 || stage == 10 || stage == 13 || stage == 14 || stage == 16
+})
+window.Handlebars.registerHelper("showTrueFalse", function (stage) {
+    return stage == 2 || stage == 4 || stage == 6 || stage == 11 || stage == 12 || stage == 15
+})
+window.Handlebars.registerHelper("makertext", function (stage) {
+    switch (stage) {
+        case 1:
+            return "Add material, Level: " + this.actor.system.maker.desiredLevel
+        case 2:
+            return "Attempt Challenge Level " + this.actor.system.maker.x
+        case 3:
+            return "Add Catalyst Level " + (this.actor.system.maker.x - 1)
+        case 4:
+            return "Attempt Challenge Level " + (this.actor.system.maker.x + 1)
+        case 5:
+            return "Add Stabilizer Level " + (this.actor.system.maker.x - 1)
+        case 6:
+            return "Attempt Challenge Level " + (this.actor.system.maker.x + 1)
+        case 7:
+            return "Mishap :("
+        case 8:
+            return "Add Major Side Effect"
+        case 9:
+            return "Add Minor Side Effect"
+        case 10:
+            return "Add Ingredient Level " + (this.actor.system.maker.x - 1)
+        case 11:
+            return "Continue?"
+        case 14:
+            return "Add Power Source Level " + (this.actor.system.maker.x)
+        case 13:
+            return "Item Created with Random Effect of Level " + (this.actor.system.maker.x)
+        case 15:
+            return "Attempt Challenge Level " + (this.actor.system.maker.x + 1)
+        case 16:
+            return "Desired Item Created :)"
     }
 })
 export class InvisibleSunVislaeActorSheet extends ActorSheet {
@@ -341,6 +391,71 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
         html.on("mouseup", ".vance-spell", (ev) => {
             const item = this.actor.items.get($(ev.currentTarget).data('itemId'))
             item.update({ "system.left": $(ev.currentTarget)[0].style.left, "system.top": $(ev.currentTarget)[0].style.top })
+        })
+
+        //maker matrix buttons
+        html.on('click', ".makermakestart", (ev) => {
+            this.actor.update({ "system.maker.stage": 1 })
+        })
+        html.on('click', ".makermakedone", (ev) => {
+            if (this.actor.system.maker.stage == 1) {
+                this.actor.update({ "system.maker.stage": 2 })
+            }
+            if (this.actor.system.maker.stage == 3) {
+                this.actor.update({ "system.maker.stage": 4 })
+            }
+            if (this.actor.system.maker.stage == 5) {
+                this.actor.update({ "system.maker.stage": 6 })
+            }
+            if (this.actor.system.maker.stage == 7 || this.actor.system.maker.stage == 13 || this.actor.system.maker.stage == 16) {
+                this.actor.update({ "system.maker.stage": 0, "system.maker.x": 1 })
+            }
+            if (this.actor.system.maker.stage == 8 || this.actor.system.maker.stage == 9) {
+                this.actor.update({ "system.maker.stage": 10, "system.maker.x": this.actor.system.maker.x + 1 })
+            }
+            if (this.actor.system.maker.stage == 10) {
+                this.actor.update({ "system.maker.stage": 11 })
+            }
+            if (this.actor.system.maker.stage == 14) {
+                this.actor.update({ "system.maker.stage": 15 })
+            }
+        })
+        html.on('click', ".makermaketrue", (ev) => {
+            if (this.actor.system.maker.stage == 2) {
+                this.actor.update({ "system.maker.stage": 10, "system.maker.x": this.actor.system.maker.x + 1 })
+            }
+            if (this.actor.system.maker.stage == 4) {
+                this.actor.update({ "system.maker.stage": 9 })
+            }
+            if (this.actor.system.maker.stage == 6) {
+                this.actor.update({ "system.maker.stage": 8 })
+            }
+            if (this.actor.system.maker.stage == 11) {
+                this.actor.update({ "system.maker.stage": 2 })
+            }
+            if (this.actor.system.maker.stage == 15) {
+                this.actor.update({ "system.maker.stage": 16 })
+            }
+        })
+        html.on('click', ".makermakefalse", (ev) => {
+            if (this.actor.system.maker.stage == 2) {
+                this.actor.update({ "system.maker.stage": 3, "system.maker.x": this.actor.system.maker.x + 1 })
+            }
+            if (this.actor.system.maker.stage == 4) {
+                this.actor.update({ "system.maker.stage": 5, "system.maker.x": this.actor.system.maker.x + 1 })
+            }
+            if (this.actor.system.maker.stage == 6 || this.actor.system.maker.stage == 15) {
+                this.actor.update({ "system.maker.stage": 7 })
+            }
+            if (this.actor.system.maker.stage == 11) {
+                if (this.actor.system.maker.x == this.actor.system.maker.desiredLevel) {
+                    this.actor.update({ "system.maker.stage": 14 })
+                }
+                else {
+                    this.actor.update({ "system.maker.stage": 13 })
+                }
+
+            }
         })
     }
 }

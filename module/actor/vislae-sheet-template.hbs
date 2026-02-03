@@ -622,7 +622,27 @@
             </div>
 
         </section>
+        <section class="tab maker" data-group="primary" data-tab="maker">
+            <h3>Maker's Matrix</h3>
+            <div class="grid grid-2col">
+                <div class="flexcolcenter" style="row-gap: 15px;">
+                    <div class="flexrowcenter">
+                        <label>Desired item level: <input type="number" name="system.maker.desiredLevel"
+                                value="{{system.maker.desiredLevel}}"></label>
+                        <label>x: <input type="number" name="system.maker.x" value="{{system.maker.x}}"
+                                disabled></label>
+                    </div>
+                    <h2>{{makertext system.maker.stage}}</h2>
+                    {{#if (showStart system.maker.stage)}}<button class="makermakestart">Start</button>{{/if}}
+                    {{#if (showDone system.maker.stage)}}<button class="makermakedone">Done</button>{{/if}}
+                    {{#if (showTrueFalse system.maker.stage)}}<div class="flexrowcenter"><button
+                            class="makermaketrue">Y/S</button><button class="makermakefalse">N/F</button></div>{{/if}}
+                </div>
+                <img src="systems/invisiblesun/icons/makerMatrix.png">
+            </div>
+        </section>
         <section class="tab weaver" data-group="primary" data-tab="weaver">
+            <h3>Aggregates</h3>
             <div class="grid grid-4col">
                 {{#each weaverAggregates as |item id|}}
                 <div class="flexcolcenter item" data-item-id='{{item._id}}'>

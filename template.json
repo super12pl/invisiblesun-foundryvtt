@@ -115,6 +115,11 @@
           "oneHour": false
         }
       },
+      "maker": {
+        "desiredLevel": 1,
+        "x": 1,
+        "stage": 0
+      },
       "equipment": {
         "income": 0,
         "glass": 0,
