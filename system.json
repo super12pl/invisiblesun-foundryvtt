@@ -32,7 +32,20 @@
       ]
     }
   },
-  "packs": [],
+  "packs": [
+    {
+      "name": "the-endless-grimoire",
+      "label": "The Endless Grimoire",
+      "system": "invisiblesun",
+      "path": "packs/the-endless-grimoire",
+      "type": "Item",
+      "flags": {},
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    }
+  ],
   "languages": [
     {
       "lang": "en",
