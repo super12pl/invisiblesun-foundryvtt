@@ -190,14 +190,15 @@
     },
     "ephemera": {
       "templates": [
-        "base"
+        "base",
+        "spell"
       ]
     },
     "objectOfPower": {
       "templates": [
-        "base"
-      ],
-      "depletion": ""
+        "base",
+        "spell"
+      ]
     },
     "vanceSpell": {
       "templates": [
