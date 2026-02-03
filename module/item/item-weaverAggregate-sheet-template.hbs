@@ -1,0 +1,51 @@
+<form class='{{cssClass}}' autocomplete='off' style="position: relative;">
+    <header class="sheet-header">
+        <img class='profile-img' src='{{item.img}}' data-edit='img' title='{{item.name}}' />
+        <h1 class='charname'><input name='name' type='text' value='{{item.name}}' placeholder='Name' /></h1>
+    </header>
+    <section class='sheet-body'>
+        <div class="flexcolcenter" style="row-gap: 5px;">
+            <span>
+                Range:
+                <select name="system.range">
+                    {{#select system.range}}
+                    <option value="touch">Touch</option>
+                    <option value="close">Close</option>
+                    <option value="near">Near</option>
+                    <option value="far">Far</option>
+                    <option value="very far">Very far</option>
+                    {{/select}}
+                </select>
+
+            </span>
+            <span>Duration:
+                <select name="system.duration">
+                    {{#select system.duration}}
+                    <option value="one round">One round</option>
+                    <option value="short">Short</option>
+                    <option value="medium">Medium</option>
+                    <option value="long">Long</option>
+                    {{/select}}
+                </select>
+
+            </span>
+            <h4>Qualities</h4>
+            <table>
+                <tr><input type="text" name="system.qualities.first" value="{{system.qualities.first}}"></tr>
+                <tr><input type="text" name="system.qualities.second" value="{{system.qualities.second}}"></tr>
+                <tr><input type="text" name="system.qualities.third" value="{{system.qualities.third}}"></tr>
+                <tr><input type="text" name="system.qualities.fourth" value="{{system.qualities.fourth}}"></tr>
+                <tr><input type="text" name="system.qualities.fifth" value="{{system.qualities.fifth}}"></tr>
+                <tr><input type="text" name="system.qualities.sixth" value="{{system.qualities.sixth}}"></tr>
+                <tr><input type="text" name="system.qualities.seventh" value="{{system.qualities.seventh}}"></tr>
+                <tr><input type="text" name="system.qualities.eighth" value="{{system.qualities.eighth}}"></tr>
+            </table>
+            <h4>Absences</h4>
+            <table>
+                <tr><input type="text" name="system.absences.first" value="{{system.absences.first}}"></tr>
+                <tr><input type="text" name="system.absences.second" value="{{system.absences.second}}"></tr>
+                <tr><input type="text" name="system.absences.third" value="{{system.absences.third}}"></tr>
+            </table>
+        </div>
+    </section>
+</form>

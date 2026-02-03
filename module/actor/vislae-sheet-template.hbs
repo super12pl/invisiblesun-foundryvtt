@@ -622,6 +622,119 @@
             </div>
 
         </section>
+        <section class="tab weaver" data-group="primary" data-tab="weaver">
+            <div class="grid grid-4col">
+                {{#each weaverAggregates as |item id|}}
+                <div class="flexcolcenter item" data-item-id='{{item._id}}'>
+                    <h3>{{item.name}}</h3>
+                    <span><b>Range:</b> {{capitalize item.system.range}}</span>
+                    <span><b>Duration:</b> {{capitalize item.system.duration}}</span>
+                    <h4 style="margin-top: 15px;">Qualities</h4>
+                    <table class="weaverTable">
+                        <tr>
+                            <td>{{item.system.qualities.first}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{item.system.qualities.second}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{item.system.qualities.third}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{item.system.qualities.fourth}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{item.system.qualities.fifth}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{item.system.qualities.sixth}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{item.system.qualities.seventh}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{item.system.qualities.eighth}}</td>
+                        </tr>
+                    </table>
+                    <h4>Absences</h4>
+                    <table class="weaverTable">
+                        <tr>
+                            <td>{{item.system.absences.first}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{item.system.absences.second}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{item.system.absences.third}}</td>
+                        </tr>
+                    </table>
+                    <div class='item-controls'>
+                        <a class='item-control item-edit' title="Edit item">
+                            <i class='fas fa-edit'></i>
+                        </a>
+                        <a class='item-control item-delete' title="Delete item permanently">
+                            <i class='fas fa-trash'></i>
+                        </a>
+                        {{!-- <a class="item-control item-chat" title="Post item to chat">
+                            <i class="fas fa-comment-alt"></i>
+                        </a> --}}
+                    </div>
+                </div>
+
+                {{/each}}
+                <button class='item-control item-create' data-type='weaverAggregate'>Add Aggregate</button>
+            </div>
+            <div class="items flexcol">
+                <h3>Weaver Spells</h3>
+                <ol class='items-list'>
+                    <li class='item flexrow items-header'>
+                        <div class='item-name'>Name</div>
+                        <div class="item-resource">Level</div>
+                        <div class="item-resource">Depletion</div>
+                        <div class='item-controls'>
+                            <a class='item-control item-create' data-type='weaverSpell'>
+                                <i class='fas fa-plus'></i>
+                            </a>
+                        </div>
+                    </li>
+                    {{#each weaverSpells as |item id|}}
+                    <li class='item flexrow' data-item-id='{{item._id}}'>
+                        <div class='item-name rollable' data-type='ability' data-item-id='{{item._id}}'
+                            data-level="{{item.system.level}}">
+                            <div class='item-image'>
+                                <img src='{{item.img}}' title='{{item.name}}' width='24' height='24' />
+                            </div>
+                            <h4>{{item.name}}</h4>
+                        </div>
+                        <div class="item-name">
+                            <h4>{{item.system.level}}</h4>
+                        </div>
+                        <div class="item-name">
+                            <a class="rollable item-control" data-item-id='{{item._id}}' data-depletion="true"
+                                title="Roll for depletion">
+                                <h4>{{item.system.depletion}}</h4>
+                            </a>
+                        </div>
+                        <div class='item-controls'>
+                            <a class='item-control item-edit' title="Edit item">
+                                <i class='fas fa-edit'></i>
+                            </a>
+                            <a class='item-control item-delete' title="Delete item permanently">
+                                <i class='fas fa-trash'></i>
+                            </a>
+                            <a class="item-control item-chat" title="Post item to chat">
+                                <i class="fas fa-comment-alt"></i>
+                            </a>
+                            <a class="item-control rollable" title="Roll item" data-item-id='{{item._id}}'
+                                data-type="ability" data-level="{{item.system.level}}">
+                                <i class="fas fa-dice"></i>
+                            </a>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ol>
+            </div>
+        </section>
         <section class="tab advancement" data-group="primary" data-tab="advancement">
             <div class="grid grid-3col">
                 <div class="flexcolcenter" style="row-gap: 15px;">

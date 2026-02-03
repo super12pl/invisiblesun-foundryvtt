@@ -29,7 +29,7 @@
           "value": ""
         },
         "order": {
-          "value": ""
+          "value": "vance"
         },
         "forte": {
           "value": ""
@@ -142,7 +142,9 @@
       "armor",
       "ephemera",
       "objectOfPower",
-      "vanceSpell"
+      "vanceSpell",
+      "weaverAggregate",
+      "weaverSpell"
     ],
     "templates": {
       "base": {
@@ -207,6 +209,31 @@
       "placed": false,
       "left": "10px",
       "top": "600px"
+    },
+    "weaverAggregate": {
+      "duration": "one round",
+      "range": "touch",
+      "qualities": {
+        "first": "",
+        "second": "",
+        "third": "",
+        "fourth": "",
+        "fifth": "",
+        "sixth": "",
+        "seventh": "",
+        "eighth": ""
+      },
+      "absences": {
+        "first": "",
+        "second": "",
+        "third": ""
+      }
+    },
+    "weaverSpell": {
+      "templates": [
+        "base",
+        "spell"
+      ]
     }
   }
 }

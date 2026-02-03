@@ -18,6 +18,9 @@ window.Handlebars.registerHelper("eq", function (str1, str2) {
 window.Handlebars.registerHelper("greq", function (num1, num2) {
     return num1 >= num2
 })
+window.Handlebars.registerHelper("capitalize", function (str) {
+    return str.capitalize()
+})
 
 //vance diagram sizes
 window.Handlebars.registerHelper("diagramSize", function (degree) {
@@ -30,9 +33,6 @@ window.Handlebars.registerHelper("diagramSize", function (degree) {
     else {
         return "width:640px;height:640px;border:2px dashed rgb(138, 37, 36)"
     }
-})
-window.Handlebars.registerHelper("capitalize", function (str) {
-    return str.capitalize()
 })
 //vance spell sizes
 window.Handlebars.registerHelper("spellSize", function (spellClass, halfSize) {
@@ -100,6 +100,8 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
             const armors = []
             const vanceSpells = []
             const placedVanceSpells = []
+            const weaverAggregates = []
+            const weaverSpells = []
             var totalArmor = 0
             // Iterate through items, allocating to containers
             for (let i of context.items) {
@@ -111,12 +113,6 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
                         break
                     case "ability":
                         abilities.push(i)
-                        break
-                    case "vanceSpell":
-                        vanceSpells.push(i)
-                        if (i.system.placed) {
-                            placedVanceSpells.push(i)
-                        }
                         break
                     case "skill":
                         switch (i.system.skillType) {
@@ -144,6 +140,18 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
                         totalArmor += i.system.value
                         armors.push(i)
                         break
+                    case "vanceSpell":
+                        vanceSpells.push(i)
+                        if (i.system.placed) {
+                            placedVanceSpells.push(i)
+                        }
+                        break
+                    case "weaverAggregate":
+                        weaverAggregates.push(i)
+                        break
+                    case "weaverSpell":
+                        weaverSpells.push(i)
+                        break
                 }
             }
             // Assign and return
@@ -154,10 +162,12 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
             context.objectsOfPower = objectsOfPower
             context.attacks = attacks
             context.armors = armors
-            context.vanceSpells = vanceSpells
-            context.placedVanceSpells = placedVanceSpells
             context.totalArmor = totalArmor
             context.totalCrux = Math.min(context.system.stats.joy, context.system.stats.despair)
+            context.vanceSpells = vanceSpells
+            context.placedVanceSpells = placedVanceSpells
+            context.weaverAggregates = weaverAggregates
+            context.weaverSpells = weaverSpells
         }
         if (actorData.type == "npc") {
             const items = []
@@ -189,6 +199,9 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
                 break
             case "armor":
                 icon = "icons/svg/shield.svg"
+                break
+            case "weaverAggregate":
+                icon = "systems/invisiblesun/icons/weaverSpell.png"
                 break
             default:
                 icon = `systems/invisiblesun/icons/${type}.png`
