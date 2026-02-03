@@ -47,6 +47,9 @@
         },
         "joy": 0,
         "despair": 0,
+        "spentCrux": {
+          "value": 0
+        },
         "hiddenKnowledge": {
           "value": 0
         },

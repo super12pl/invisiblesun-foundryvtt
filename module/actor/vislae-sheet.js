@@ -15,6 +15,9 @@ window.Handlebars.registerHelper('sum', function (num1, num2) {
 window.Handlebars.registerHelper("eq", function (str1, str2) {
     return str1 == str2
 })
+window.Handlebars.registerHelper("greq", function (num1, num2) {
+    return num1 >= num2
+})
 
 //vance diagram sizes
 window.Handlebars.registerHelper("diagramSize", function (degree) {
@@ -154,6 +157,7 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
             context.vanceSpells = vanceSpells
             context.placedVanceSpells = placedVanceSpells
             context.totalArmor = totalArmor
+            context.totalCrux = Math.min(context.system.stats.joy, context.system.stats.despair)
         }
         if (actorData.type == "npc") {
             const items = []

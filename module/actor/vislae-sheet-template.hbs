@@ -35,12 +35,7 @@
                         <div class="flex-group-center">
                             <label>Degree <input style="width: 40px;" name="system.stats.degree.value"
                                     value="{{system.stats.degree.value}}" type="number" /></label>
-                            <label>Acumen <input style="width: 40px;" name="system.stats.acumen.value"
-                                    value="{{system.stats.acumen.value}}" type="number" /></label>
-                            <label>Joy <input style="width: 40px;" name="system.stats.joy" value="{{system.stats.joy}}"
-                                    type="number" /></label>
-                            <label>Despair <input style="width: 40px;" name="system.stats.despair"
-                                    value="{{system.stats.despair}}" type="number" /></label>
+
                             <label>Hidden Knowledge <input style="width: 40px;"
                                     name="system.stats.hiddenKnowledge.value"
                                     value="{{system.stats.hiddenKnowledge.value}}" type="number" /></label>
@@ -97,6 +92,7 @@
         {{#if (eq system.basic.order.value "weaver")}}<a class="item" data-tab="weaver">Weaver</a>{{/if}}
         {{#if (eq system.basic.order.value "goetic")}}<a class="item" data-tab="goetic">Goetic</a>{{/if}}
         {{#if (eq system.basic.order.value "apostate")}}<a class="item" data-tab="apostate">Apostate</a>{{/if}}
+        <a class="item" data-tab="advancement">Advancement</a>
     </nav>
 
     {{!-- Sheet Body --}}
@@ -625,6 +621,50 @@
                 </ol>
             </div>
 
+        </section>
+        <section class="tab advancement" data-group="primary" data-tab="advancement">
+            <div class="grid grid-3col">
+                <div class="flexcolcenter" style="row-gap: 15px;">
+                    <h3>Progression</h3>
+                    <div class="flexrowcenter" style="column-gap: 15px;">
+                        <label>Acumen <input style="width: 40px;" name="system.stats.acumen.value"
+                                value="{{system.stats.acumen.value}}" type="number" /></label>
+
+                    </div>
+                    <div class="flexrowcenter" style="column-gap: 15px;">
+                        <label>Joy <input style="width: 40px;" name="system.stats.joy" value="{{system.stats.joy}}"
+                                type="number" /></label>
+                        <label>Despair <input style="width: 40px;" name="system.stats.despair"
+                                value="{{system.stats.despair}}" type="number" /></label>
+
+                    </div>
+                    <div class="flexrowcenter" style="column-gap: 15px;">
+                        <label>Spent Crux <input style="width: 40px;" name="system.stats.spentCrux.value"
+                                value="{{system.stats.spentCrux.value}}" type="number" /></label>
+                        <label>Total Crux: <input style="width: 40px;" disabled value="{{totalCrux}}"
+                                type="number" /></label>
+                    </div>
+
+                </div>
+                <div class="flexcolcenter" style="grid-column-start:2;grid-column-end:4">
+                    <h3>Testament of Suns Effect</h3>
+                    <div class="grid grid-2col">
+                        <div class="flexcolcenter testamentEffects">
+                            <span style="background-color: indigo;color:white">No Power</span>
+                            <span style="{{#if (greq totalCrux 5)}} background-color: indigo;color:white {{/if}}">Level
+                                2</span>
+                            <span>Level 3</span>
+                            <span>Level 4</span>
+                            <span>Level 6</span>
+                            <span>Level 8</span>
+                            <span>Level 9</span>
+                            <span>Level 10</span>
+                        </div>
+                        <img height="480" src="systems/invisiblesun/icons/testamentOfSuns.png">
+                    </div>
+                </div>
+
+            </div>
         </section>
     </section>
 </form>
