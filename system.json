@@ -1,8 +1,8 @@
 {
   "id": "invisiblesun",
   "title": "Invisible Sun",
-  "description": "Attempt at implementation of Invisible Sun by Monte Cook Games for Foundry.",
-  "version": "1.1.0",
+  "description": "Implementation of the Invisible Sun system by Monte Cook Games for Foundry. Includes PC and NPC sheets with a roll engine as well as compedium packs.",
+  "version": "1.1.1",
   "compatibility": {
     "minimum": "12",
     "verified": "12.331"
@@ -38,6 +38,18 @@
       "label": "The Endless Grimoire",
       "system": "invisiblesun",
       "path": "packs/the-endless-grimoire",
+      "type": "Item",
+      "flags": {},
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "vance-spells",
+      "label": "Vance Spells (Classes not set!)",
+      "system": "invisiblesun",
+      "path": "packs/vance-spells",
       "type": "Item",
       "flags": {},
       "ownership": {
