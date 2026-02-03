@@ -468,3 +468,17 @@
 .weaverTable td {
     height: 25px;
 }
+
+.accurancy,
+.movement,
+.physicality,
+.perception {
+    background-color: rgb(248, 225, 202);
+}
+
+.intellect,
+.sortilege,
+.sorcery,
+.interaction {
+    background-color: rgb(193, 190, 205);
+}

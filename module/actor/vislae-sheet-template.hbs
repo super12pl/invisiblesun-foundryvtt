@@ -46,9 +46,7 @@
             </div>
 
 
-            <div class="flexcol pools">
-                {{!-- Does that even need to be on the sheet? --}}
-                <!-- <h4 class="flex-group-center"><div class="flex-group-center" style="flex:1;">Certes <input style="width: 40px;" name="system.stats.certes.value" value="{{system.stats.certes.value}}" type="number" /></div><div class="flex-group-center" style="flex:1;">Qualia <input style="width: 40px;" name="system.stats.qualia.value" value="{{system.stats.qualia.value}}" type="number" /></div></h4> -->
+            <div class="flexcolcenter pools">
                 <div class="resources grid grid-4col">
                     {{#each system.pools as |pool key|}}
                     <div class="resource flex-group-center flexcol {{key}}">
