@@ -198,7 +198,8 @@
       "templates": [
         "base",
         "spell"
-      ]
+      ],
+      "effectDepletion": ""
     },
     "vanceSpell": {
       "templates": [

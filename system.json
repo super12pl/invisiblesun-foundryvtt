@@ -68,6 +68,18 @@
         "PLAYER": "OBSERVER",
         "ASSISTANT": "OWNER"
       }
+    },
+    {
+      "name": "objects-of-power",
+      "label": "Objects Of Power",
+      "system": "invisiblesun",
+      "path": "packs/objects-of-power",
+      "type": "Item",
+      "flags": {},
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     }
   ],
   "languages": [
