@@ -249,13 +249,13 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
             let resourceMax = $(this).find(".max")
             $(this).find(".add").click(clickEvent => {
                 // if (Number(resourceValue.val()) < Number(resourceMax.val())) { //check if not already max
-                //     resourceValue.val(Number(resourceValue.val()) + 1)
+                resourceValue.val(Number(resourceValue.val()) + 1)
                 // }
 
             })
             $(this).find(".substract").click(clickEvent => {
                 // if (Number(resourceValue.val()) > 0) { // check if more than zero
-                //     resourceValue.val(Number(resourceValue.val()) - 1)
+                resourceValue.val(Number(resourceValue.val()) - 1)
                 // }
             })
             $(this).find(".reset").click(clickEvent => {

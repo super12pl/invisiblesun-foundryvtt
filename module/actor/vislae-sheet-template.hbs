@@ -46,7 +46,7 @@
             </div>
 
 
-            <div class="flexcol">
+            <div class="flexcol pools">
                 {{!-- Does that even need to be on the sheet? --}}
                 <!-- <h4 class="flex-group-center"><div class="flex-group-center" style="flex:1;">Certes <input style="width: 40px;" name="system.stats.certes.value" value="{{system.stats.certes.value}}" type="number" /></div><div class="flex-group-center" style="flex:1;">Qualia <input style="width: 40px;" name="system.stats.qualia.value" value="{{system.stats.qualia.value}}" type="number" /></div></h4> -->
                 <div class="resources grid grid-4col">
@@ -61,9 +61,11 @@
                                 data-dtype="Number" />
                         </div>
                         <div class="flex-group-center">
-                            <i class="add fa-item fa-regular fa-plus-square" style="cursor: pointer;"></i>
-                            <i class="substract fa-item fa-regular fa-minus-square" style="cursor: pointer;"></i>
-                            <i class="reset fas fa-sync-alt" style="cursor: pointer;"></i>
+                            <i class="add fa-item fa-regular fa-plus-square"
+                                style="cursor: pointer;font-size:x-large"></i>
+                            <i class="substract fa-item fa-regular fa-minus-square"
+                                style="cursor: pointer;;font-size:x-large"></i>
+                            <i class="reset fas fa-sync-alt" style="cursor: pointer;;font-size:x-large"></i>
                         </div>
                         <div class="flex-group-center">
                             <input class="max" type="number" name="system.pools.{{key}}.vex" value="{{pool.vex}}"
