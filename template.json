@@ -124,7 +124,7 @@
       "templates": [
         "base"
       ],
-      "level": 0,
+      "level": 1,
       "maxInjutries": 0,
       "maxWounds": 0,
       "maxAnguish": 0
@@ -143,7 +143,7 @@
     ],
     "templates": {
       "base": {
-        "level": 0,
+        "level": 1,
         "description": ""
       },
       "spell": {
@@ -157,7 +157,7 @@
         "base"
       ],
       "quantity": {
-        "value": 0,
+        "value": 1,
         "min": 0
       }
     },

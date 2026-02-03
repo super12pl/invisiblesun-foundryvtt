@@ -17,14 +17,16 @@ window.Handlebars.registerHelper("eq", function (str1, str2) {
 })
 
 //vance diagram sizes
-window.Handlebars.registerHelper("v1", function (degree) {
-    return degree == 1 || degree == 2
-})
-window.Handlebars.registerHelper("v2", function (degree) {
-    return degree == 3 || degree == 4
-})
-window.Handlebars.registerHelper("v3", function (degree) {
-    return degree == 5 || degree == 6
+window.Handlebars.registerHelper("diagramSize", function (degree) {
+    if (degree == 1 || degree == 2) {
+        return "width:320px;height:320px;border:2px dashed rgb(102, 56, 149)"
+    }
+    else if (degree == 3 || degree == 4) {
+        return "width:640px;height:320px;border:2px dashed rgb(225, 132, 41)"
+    }
+    else {
+        return "width:640px;height:640px;border:2px dashed rgb(138, 37, 36)"
+    }
 })
 window.Handlebars.registerHelper("capitalize", function (str) {
     return str.capitalize()
@@ -173,8 +175,23 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
         // Initialize a default name.
         const name = `New ${type.capitalize()}`;
         // Prepare the item object.
+        var icon = ""
+        switch (type) {
+            case "item":
+                icon = "icons/svg/item-bag.svg"
+                break
+            case "attack":
+                icon = "icons/svg/sword.svg"
+                break
+            case "armor":
+                icon = "icons/svg/shield.svg"
+                break
+            default:
+                icon = `systems/invisiblesun/icons/${type}.png`
+        }
         const itemData = {
             name: name,
+            img: icon,
             type: type,
             data: data
         };
@@ -230,7 +247,12 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
         })
 
         // Create Inventory Item
-        html.on('click', '.item-create', this._onItemCreate.bind(this));
+        html.on('click', '.item-create', (ev) => {
+            this._onItemCreate(ev).then((item) => {
+                item.sheet.render(true);
+            })
+
+        });
 
         html.on("click", '.item-edit', (ev) => {
             const li = $(ev.currentTarget).parents('.item');
@@ -249,7 +271,7 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
             const item = this.actor.items.get(li.data('itemId'));
             ChatMessage.create({
                 speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-                content: `<div class="grid grid-2col"><img src="${item.img}"></img><div><h4 class="item-name">${item.name}, Level ${item.system.level}</h4><div>${item.system.description}</div></div></div>`
+                content: `<div class="grid grid-2col"><img src="${item.img}"></img><div class='flexcolcenter'><h4 class="item-name">${item.name}</h4><h4><b>Level:</b> ${item.system.level}</h4>${item.system.color ? `<h4><b>Color:</b> ${item.system.color}</h4>` : ""}${item.system.depletion ? `<h4><b>Depletion:</b> ${item.system.depletion}</h4>` : ""}</div><div colspan='2'>${item.system.description}</div></div>`
             });
         })
 

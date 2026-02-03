@@ -397,6 +397,7 @@
         </section>
         <section class="tab skills" data-group="primary" data-tab="skills">
             <div class="items flexcol">
+                <h3>Skills</h3>
                 <ol class='items-list'>
                     <li class='item flexrow items-header'>
                         <div class='item-name'>Name</div>
@@ -500,7 +501,8 @@
                 </ol>
             </div>
         </section>
-        <section class="tab items" data-group="primary" data-tab="abilities">
+        <section class="tab abilities" data-group="primary" data-tab="abilities">
+            <h3>Abilities & General Spells</h3>
             <div class="items flexcol">
                 <ol class='items-list'>
                     <li class='item flexrow items-header'>
@@ -551,11 +553,11 @@
                 </ol>
             </div>
         </section>
-        <section class="tab items" data-group="primary" data-tab="vance">
+        <section class="tab vance" data-group="primary" data-tab="vance">
             <div class="flexcolcenter" style="width: 100%; row-gap:10px;margin-top:15px">
+                <h3>Vance Diagram</h3>
                 <span>(Right-click to remove block)</span>
-                <div class="vance-diagram"
-                    style="width: {{#if (v1 system.stats.degree.value)}}320px{{/if}}{{#if (v2 system.stats.degree.value)}}640px{{/if}}{{#if (v3 system.stats.degree.value)}}640px{{/if}};height: {{#if (v1 system.stats.degree.value)}}320px{{/if}}{{#if (v2 system.stats.degree.value)}}320px{{/if}}{{#if (v3 system.stats.degree.value)}}640px{{/if}};">
+                <div class="vance-diagram" style="{{diagramSize system.stats.degree.value}}">
                 </div>
                 {{#each placedVanceSpells as |item id|}}
                 <div class="vance-spell flexrowcenter"
@@ -565,6 +567,7 @@
                 {{/each}}
             </div>
             <div class="items flexcol">
+                <h3>Vance Spells</h3>
                 <ol class='items-list'>
                     <li class='item flexrow items-header'>
                         <div class='item-name'>Name</div>
