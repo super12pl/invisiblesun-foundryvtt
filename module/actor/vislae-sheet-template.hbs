@@ -87,11 +87,21 @@
         <a class="item" data-tab="items">Items</a>
         <a class="item" data-tab="skills">Skills</a>
         <a class="item" data-tab="abilities">Abilities/Spells</a>
-        {{#if (eq system.basic.order.value "vance")}}<a class="item" data-tab="vance">Vance</a>{{/if}}
-        {{#if (eq system.basic.order.value "maker")}}<a class="item" data-tab="maker">Maker</a>{{/if}}
-        {{#if (eq system.basic.order.value "weaver")}}<a class="item" data-tab="weaver">Weaver</a>{{/if}}
-        {{#if (eq system.basic.order.value "goetic")}}<a class="item" data-tab="goetic">Goetic</a>{{/if}}
-        {{#if (eq system.basic.order.value "apostate")}}<a class="item" data-tab="apostate">Apostate</a>{{/if}}
+        {{#if (eq system.basic.order.value "vance")}}
+        <a class="item" data-tab="vance">Vance</a>
+        {{/if}}
+        {{#if (eq system.basic.order.value "maker")}}
+        <a class="item" data-tab="maker">Maker</a>
+        {{/if}}
+        {{#if (eq system.basic.order.value "weaver")}}
+        <a class="item" data-tab="weaver">Weaver</a>
+        {{/if}}
+        {{#if (eq system.basic.order.value "goetic")}}
+        {{!-- <a class="item" data-tab="goetic">Goetic</a> --}}
+        {{/if}}
+        {{#if (eq system.basic.order.value "apostate")}}
+        {{!-- <a class="item" data-tab="apostate">Apostate</a> --}}
+        {{/if}}
         <a class="item" data-tab="advancement">Advancement</a>
     </nav>
 
@@ -641,6 +651,7 @@
                 <img src="systems/invisiblesun/icons/makerMatrix.png">
             </div>
         </section>
+
         <section class="tab weaver" data-group="primary" data-tab="weaver">
             <h3>Aggregates</h3>
             <div class="grid grid-4col">
@@ -754,6 +765,12 @@
                     {{/each}}
                 </ol>
             </div>
+        </section>
+        <section class="tab goetic" data-group="primary" data-tab="goetic">
+            Not sure what to put here yet.
+        </section>
+        <section class="tab apostate" data-group="primary" data-tab="apostate">
+            Uhuh
         </section>
         <section class="tab advancement" data-group="primary" data-tab="advancement">
             <div class="grid grid-3col">
