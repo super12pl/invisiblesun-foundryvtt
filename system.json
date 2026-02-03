@@ -47,7 +47,7 @@
     },
     {
       "name": "vance-spells",
-      "label": "Vance Spells (Classes not set!)",
+      "label": "Vance Spells",
       "system": "invisiblesun",
       "path": "packs/vance-spells",
       "type": "Item",
