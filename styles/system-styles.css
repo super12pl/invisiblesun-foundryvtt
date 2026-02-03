@@ -432,3 +432,27 @@
 .customcheckbox input:checked {
     margin-bottom: 0px;
 }
+
+.vance-diagram {
+    box-sizing: border-box;
+    border: royalblue 2px solid;
+    background-color: cornflowerblue;
+}
+
+.vance-spell {
+    box-sizing: border-box;
+    border: 5px solid black;
+    font-weight: bold;
+}
+
+.flexrowcenter {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.window-content {
+    position: relative;
+}

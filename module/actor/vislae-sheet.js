@@ -12,13 +12,63 @@ window.Handlebars.registerHelper('select', function (value, options) {
 window.Handlebars.registerHelper('sum', function (num1, num2) {
     return num1 + num2
 })
+window.Handlebars.registerHelper("eq", function (str1, str2) {
+    return str1 == str2
+})
+
+//vance diagram sizes
+window.Handlebars.registerHelper("v1", function (degree) {
+    return degree == 1 || degree == 2
+})
+window.Handlebars.registerHelper("v2", function (degree) {
+    return degree == 3 || degree == 4
+})
+window.Handlebars.registerHelper("v3", function (degree) {
+    return degree == 5 || degree == 6
+})
+window.Handlebars.registerHelper("capitalize", function (str) {
+    return str.capitalize()
+})
+//vance spell sizes
+window.Handlebars.registerHelper("spellSize", function (spellClass, halfSize) {
+    switch (spellClass) {
+        case "alpha":
+            if (halfSize) {
+                return "width:160px;height:80px"
+            }
+            else {
+                return "width:320px;height:160px"
+            }
+        case "beta":
+            if (halfSize) {
+                return "width:160px;height:160px"
+            }
+            else {
+                return "width:320px;height:320px"
+            }
+        case "gamma":
+            if (halfSize) {
+                return "width:320px;height:160px"
+            }
+            else {
+                return "width:640px;height:320px"
+            }
+        case "omega":
+            if (halfSize) {
+                return "width:320px;height:320px"
+            }
+            else {
+                return "width:640px;height:640px"
+            }
+    }
+})
 export class InvisibleSunVislaeActorSheet extends ActorSheet {
     /** @override */
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["invisiblesun", "sheet", "actor"],
-            width: 600,
-            height: 800,
+            width: 800,
+            height: 1000,
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body" }]
         });
     }
@@ -43,6 +93,8 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
             const objectsOfPower = []
             const attacks = []
             const armors = []
+            const vanceSpells = []
+            const placedVanceSpells = []
             var totalArmor = 0
             // Iterate through items, allocating to containers
             for (let i of context.items) {
@@ -54,6 +106,12 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
                         break
                     case "ability":
                         abilities.push(i)
+                        break
+                    case "vanceSpell":
+                        vanceSpells.push(i)
+                        if (i.system.placed) {
+                            placedVanceSpells.push(i)
+                        }
                         break
                     case "skill":
                         switch (i.system.skillType) {
@@ -91,6 +149,8 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
             context.objectsOfPower = objectsOfPower
             context.attacks = attacks
             context.armors = armors
+            context.vanceSpells = vanceSpells
+            context.placedVanceSpells = placedVanceSpells
             context.totalArmor = totalArmor
         }
         if (actorData.type == "npc") {
@@ -130,7 +190,6 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
             let roll = new Roll("d10-1", this.actor.getRollData());
             await roll.evaluate()
             var depleted = false
-            console.log(this.actor.items.get(dataset.itemId).system.depletion.split(","), roll.total.toString())
             if (this.actor.items.get(dataset.itemId).system.depletion.split(",").includes(roll.total.toString())) {
                 depleted = true
             }
@@ -155,15 +214,15 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
             let resourceValue = $(this).find(".value")
             let resourceMax = $(this).find(".max")
             $(this).find(".add").click(clickEvent => {
-                if (Number(resourceValue.val()) < Number(resourceMax.val())) { //check if not already max
-                    resourceValue.val(Number(resourceValue.val()) + 1)
-                }
+                // if (Number(resourceValue.val()) < Number(resourceMax.val())) { //check if not already max
+                //     resourceValue.val(Number(resourceValue.val()) + 1)
+                // }
 
             })
             $(this).find(".substract").click(clickEvent => {
-                if (Number(resourceValue.val()) > 0) { // check if more than zero
-                    resourceValue.val(Number(resourceValue.val()) - 1)
-                }
+                // if (Number(resourceValue.val()) > 0) { // check if more than zero
+                //     resourceValue.val(Number(resourceValue.val()) - 1)
+                // }
             })
             $(this).find(".reset").click(clickEvent => {
                 resourceValue.val(resourceMax.val())
@@ -227,5 +286,22 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
                 li.addEventListener('dragstart', handler, false);
             });
         }
+        //making vance spells draggable using jquery-ui
+        $(".vance-diagram").draggable({ cancel: ".vance-diagram" })
+        $(".vance-spell").draggable({ snap: true })
+
+        //placing and removing
+        html.on('click', ".item-vance-place", (ev) => {
+            const item = this.actor.items.get($(ev.currentTarget).data('itemId'))
+            item.update({ "system.placed": true })
+        })
+        html.on("contextmenu", ".vance-spell", (ev) => {
+            const item = this.actor.items.get($(ev.currentTarget).data('itemId'))
+            item.update({ "system.placed": false, "system.left": "10px", "system.top": "600px" })
+        })
+        html.on("mouseup", ".vance-spell", (ev) => {
+            const item = this.actor.items.get($(ev.currentTarget).data('itemId'))
+            item.update({ "system.left": $(ev.currentTarget)[0].style.left, "system.top": $(ev.currentTarget)[0].style.top })
+        })
     }
 }

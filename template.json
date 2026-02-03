@@ -113,6 +113,10 @@
         }
       },
       "equipment": {
+        "income": 0,
+        "glass": 0,
+        "crystal": 0,
+        "gem": 0,
         "ephemeraLimit": 2
       }
     },
@@ -134,12 +138,18 @@
       "attack",
       "armor",
       "ephemera",
-      "objectOfPower"
+      "objectOfPower",
+      "vanceSpell"
     ],
     "templates": {
       "base": {
         "level": 0,
         "description": ""
+      },
+      "spell": {
+        "addDie": false,
+        "depletion": "",
+        "color": ""
       }
     },
     "item": {
@@ -159,9 +169,9 @@
     },
     "ability": {
       "templates": [
-        "base"
-      ],
-      "addDie": false
+        "base",
+        "spell"
+      ]
     },
     "attack": {
       "skill": 0,
@@ -183,6 +193,17 @@
         "base"
       ],
       "depletion": ""
+    },
+    "vanceSpell": {
+      "templates": [
+        "base",
+        "spell"
+      ],
+      "class": "alpha",
+      "halfSize": false,
+      "placed": false,
+      "left": "10px",
+      "top": "600px"
     }
   }
 }
