@@ -180,6 +180,7 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
                     case "attack":
                         attacks.push(i)
                         break
+                    case "incantation":
                     case "ephemera":
                         ephemera.push(i)
                         break

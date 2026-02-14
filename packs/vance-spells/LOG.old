@@ -1,8 +1,3 @@
-2026/02/04-00:35:09.591 1180 Log #31: 0 ops saved to Table #40 OK
-2026/02/04-00:35:09.591 1180 Archiving C:\Users\super\AppData\Local\FoundryVTT\Data\systems\invisiblesun\packs\vance-spells/000031.log: OK
-2026/02/04-00:35:09.591 1180 Log #39: 0 ops saved to Table #41 OK
-2026/02/04-00:35:09.591 1180 Archiving C:\Users\super\AppData\Local\FoundryVTT\Data\systems\invisiblesun\packs\vance-spells/000039.log: OK
-2026/02/04-00:35:09.591 1180 Table #9: 50 entries OK
-2026/02/04-00:35:09.593 1180 Archiving C:\Users\super\AppData\Local\FoundryVTT\Data\systems\invisiblesun\packs\vance-spells/MANIFEST-000030: OK
-2026/02/04-00:35:09.593 1180 Archiving C:\Users\super\AppData\Local\FoundryVTT\Data\systems\invisiblesun\packs\vance-spells/MANIFEST-000038: OK
-2026/02/04-00:35:09.595 1180 **** Repaired leveldb C:\Users\super\AppData\Local\FoundryVTT\Data\systems\invisiblesun\packs\vance-spells; recovered 1 files; 19815 bytes. Some data may have been lost. ****
+2026/02/14-23:33:26.792 1898 Recovering log #50
+2026/02/14-23:33:26.794 1898 Delete type=0 #50
+2026/02/14-23:33:26.794 1898 Delete type=3 #49

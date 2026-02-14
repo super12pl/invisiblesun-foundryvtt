@@ -146,6 +146,7 @@
       "attack",
       "armor",
       "ephemera",
+      "incantation",
       "objectOfPower",
       "vanceSpell",
       "weaverAggregate",
@@ -194,6 +195,12 @@
       "properties": ""
     },
     "ephemera": {
+      "templates": [
+        "base",
+        "spell"
+      ]
+    },
+    "incantation": {
       "templates": [
         "base",
         "spell"
