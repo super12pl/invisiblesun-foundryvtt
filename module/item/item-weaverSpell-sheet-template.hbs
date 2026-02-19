@@ -20,6 +20,33 @@
           <label class='resource-label'>Color</label>
           <input type='text' name='system.color' value="{{system.color}}" />
         </div>
+        <span>
+          Range:
+          <select name="system.range">
+            {{#select system.range}}
+            <option value="touch">Touch</option>
+            <option value="close">Close</option>
+            <option value="near">Near</option>
+            <option value="far">Far</option>
+            <option value="very far">Very far</option>
+            {{/select}}
+          </select>
+
+        </span>
+        <span>Duration:
+          <select name="system.duration">
+            {{#select system.duration}}
+            <option value="one round">One round</option>
+            <option value="short">Short</option>
+            <option value="medium">Medium</option>
+            <option value="long">Long</option>
+            {{/select}}
+          </select>
+        </span>
+        <div class="resource">
+          <label class='resource-label'>Targets</label>
+          <input type='text' name='system.targets' value="{{system.targets}}" />
+        </div>
       </div>
     </div>
   </header>

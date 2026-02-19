@@ -247,7 +247,10 @@
       "templates": [
         "base",
         "spell"
-      ]
+      ],
+      "duration": "one round",
+      "range": "touch",
+      "targets": 1
     }
   }
 }
