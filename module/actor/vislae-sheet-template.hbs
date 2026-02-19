@@ -645,8 +645,22 @@
                     <h2>{{makertext system.maker.stage}}</h2>
                     {{#if (showStart system.maker.stage)}}<button class="makermakestart">Start</button>{{/if}}
                     {{#if (showDone system.maker.stage)}}<button class="makermakedone">Done</button>{{/if}}
-                    {{#if (showTrueFalse system.maker.stage)}}<div class="flexrowcenter"><button
-                            class="makermaketrue">Y/S</button><button class="makermakefalse">N/F</button></div>{{/if}}
+                    {{#if (showTrueFalse system.maker.stage)}}<div class="flexrowcenter">
+                        <button class="makermaketrue">
+                            {{#if (eq system.maker.stage 11)}}
+                            Yes
+                            {{else}}
+                            Success
+                            {{/if}}
+                        </button>
+                        <button class="makermakefalse">
+                            {{#if (eq system.maker.stage 11)}}
+                            No
+                            {{else}}
+                            Failure
+                            {{/if}}
+                        </button>
+                    </div>{{/if}}
                 </div>
                 <img src="systems/invisiblesun/icons/makerMatrix.png">
             </div>
