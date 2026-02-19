@@ -339,7 +339,7 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
             const item = this.actor.items.get(li.data('itemId'));
             ChatMessage.create({
                 speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-                content: `<div class="grid grid-2col"><img src="${item.img}"></img><div class='flexcolcenter'><h4 class="item-name">${item.name}</h4><h4><b>Level:</b> ${item.system.level}</h4>${item.system.color ? `<h4><b>Color:</b> ${item.system.color}</h4>` : ""}${item.system.depletion ? `<h4><b>Depletion:</b> ${item.system.depletion}</h4>` : ""}</div><div colspan='2'>${item.system.description}</div></div>`
+                content: `<div class="grid grid-3col"><img src="${item.img}"></img><div style="grid-column: 2 / span 2" class='flexcolcenter'><h3 class="item-name">${item.name}</h3><h4><b>Level:</b> ${item.system.level}</h4>${item.system.color ? `<h4><b>Color:</b> ${item.system.color}</h4>` : ""}${item.system.depletion ? `<h4><b>Depletion:</b> ${item.system.depletion}</h4>` : ""}${item.system.range ? `<h4><b>Range:</b> ${item.system.range}</h4>` : ""}${item.system.duration ? `<h4><b>Duration:</b> ${item.system.duration}${item.system.targets ? `<h4><b>Targets:</b> ${item.system.targets}</h4>` : ""}</h4>` : ""}</div></div><hr><div colspan='2'>${item.system.description}</div>`
             });
         })
 
