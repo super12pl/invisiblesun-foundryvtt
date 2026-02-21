@@ -33,45 +33,48 @@ export class RollEngineDialogSheet extends FormApplication {
             data.item = game.actors.get(data.actor._id).items.get(data.dataset.itemId)
             console.log(data.item)
             data.label = data.item.name
+            data.pool = ""
+            data.spell = false
+            data.sortilege = false
+            data.attack = false
+            switch (data.item.type) {
+                case "skill":
+                    data.skill = parseInt(data.item.system.level)
+                    break
+                case "item":
+                    data.tool = parseInt(data.item.system.level)
+                    break
+                case "ephemera":
+                    data.tool = parseInt(data.item.system.level)
+                    break
+                case "objectOfPower":
+                    data.tool = parseInt(data.item.system.level)
+                    break
+                case "pool":
+                    data.label = data.dataset.pool
+                    if (data.dataset.pool == "sortilege") {
+                        data.sortilege = true
+                    }
+                    else {
+                        data.pool = data.dataset.pool
+                    }
+                    break
+                case "ability":
+                    data.spellCost = parseInt(data.dataset.level)
+                    data.magic = data.spellCost
+                    if (data.item.system.addDie) {
+                        data.spell = true
+                    }
+                    break
+                case "attack":
+                    data.attack = true
+                    data.damage = data.item.system.damage
+                    data.skill = data.item.system.skill
+                    data.tool = data.item.system.weapon
+            }
         }
-        data.pool = ""
-        data.spell = false
-        data.sortilege = false
-        data.attack = false
-        switch (data.item.type) {
-            case "skill":
-                data.skill = parseInt(data.item.system.level)
-                break
-            case "item":
-                data.tool = parseInt(data.item.system.level)
-                break
-            case "ephemera":
-                data.tool = parseInt(data.item.system.level)
-                break
-            case "objectOfPower":
-                data.tool = parseInt(data.item.system.level)
-                break
-            case "pool":
-                data.label = data.dataset.pool
-                if (data.dataset.pool == "sortilege") {
-                    data.sortilege = true
-                }
-                else {
-                    data.pool = data.dataset.pool
-                }
-                break
-            case "ability":
-                data.spellCost = parseInt(data.dataset.level)
-                data.magic = data.spellCost
-                if (data.item.system.addDie) {
-                    data.spell = true
-                }
-                break
-            case "attack":
-                data.attack = true
-                data.damage = data.item.system.damage
-                data.skill = data.item.system.skill
-                data.tool = data.item.system.weapon
+        else {
+            data.pool = data.dataset.pool
         }
         return data
     }
