@@ -1,4 +1,10 @@
 {
     "invisiblesun.Sheet.Actor": "Default Vislae Character Sheet",
-    "invisiblesun.Sheet.Item": "Default Item Sheet"
+    "invisiblesun.Sheet.Item": "Default Item Sheet",
+    "TYPES": {
+        "Actor": {
+            "vislae": "Player Character",
+            "npc": "NPC"
+        }
+    }
 }
