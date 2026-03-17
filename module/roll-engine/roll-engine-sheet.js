@@ -29,14 +29,13 @@ export class RollEngineDialogSheet extends FormApplication {
     getData() {
         // Basic data
         const data = super.getData().object;
+        data.spell = false
+        data.sortilege = false
+        data.attack = false
+        data.pool = ""
         if (data.dataset.type != "pool") {
             data.item = game.actors.get(data.actor._id).items.get(data.dataset.itemId)
-            console.log(data.item)
             data.label = data.item.name
-            data.pool = ""
-            data.spell = false
-            data.sortilege = false
-            data.attack = false
             switch (data.item.type) {
                 case "skill":
                     data.skill = parseInt(data.item.system.level)
@@ -99,7 +98,7 @@ export class RollEngineDialogSheet extends FormApplication {
         html.find(".rollBtn").click(async () => {
             var difficulty = getNum(data.difficulty)
             let venture = getNum(data.skill) + getNum(data.tool) + getNum(data.circuimstance) + getNum(data.magic) + getNum(data.beneTask)
-            let roll = new Roll((data.sortilege + data.spell + 1) + "d10k+" + (venture - 1), data.actor.getRollData());
+            let roll = new Roll((data?.sortilege + data?.spell + 1) + "d10k+" + (venture - 1), data.actor.getRollData());
             await roll.evaluate()
             let successes = 0
             let fluxes = 0
