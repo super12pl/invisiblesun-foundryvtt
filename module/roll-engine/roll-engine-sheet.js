@@ -74,6 +74,7 @@ export class RollEngineDialogSheet extends FormApplication {
             }
         }
         else {
+            data.label = data.dataset.pool.charAt(0).toUpperCase() + data.dataset.pool.slice(1)
             data.pool = data.dataset.pool
         }
         return data
