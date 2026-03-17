@@ -143,7 +143,7 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
         if (actorData.type == "vislae") {
             const gear = [];
             const abilities = [];
-            const skills = [[], [], []];
+            const skills = [[], [], [], []];
             const ephemera = []
             const objectsOfPower = []
             const attacks = []
@@ -174,6 +174,9 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
                                 break
                             case "development":
                                 skills[2].push(i)
+                                break
+                            case "connection":
+                                skills[3].push(i)
                                 break
                         }
                         break
@@ -235,11 +238,6 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
         const header = event.currentTarget;
         // Get the type of item to create.
         const type = header.dataset.type;
-        // Grab any data associated with this control.
-        const data = duplicate(header.dataset);
-        // Initialize a default name.
-        const name = `New ${type.capitalize()}`;
-        // Prepare the item object.
         var icon = ""
         switch (type) {
             case "item":
@@ -257,11 +255,13 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
             default:
                 icon = `systems/invisiblesun/icons/${type}.png`
         }
+        // Initialize a default name.
+        const name = `New ${type.capitalize()}`;
+
         const itemData = {
             name: name,
             img: icon,
             type: type,
-            data: data
         };
 
         // Finally, create the item!
@@ -317,6 +317,9 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
         // Create Inventory Item
         html.on('click', '.item-create', (ev) => {
             this._onItemCreate(ev).then((item) => {
+                if (item.type == "skill") {
+                    item.update({ "system.skillType": $(ev.currentTarget)[0].dataset.skilltype })
+                }
                 item.sheet.render(true);
             })
 
