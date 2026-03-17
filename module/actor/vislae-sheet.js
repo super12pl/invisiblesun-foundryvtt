@@ -146,6 +146,7 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
             const skills = [[], [], [], []];
             const ephemera = []
             const objectsOfPower = []
+            const secrets = []
             const attacks = []
             const armors = []
             const vanceSpells = []
@@ -190,6 +191,9 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
                     case "objectOfPower":
                         objectsOfPower.push(i)
                         break
+                    case "secret":
+                        secrets.push(i)
+                        break
                     case "armor":
                         totalArmor += i.system.value
                         armors.push(i)
@@ -214,6 +218,7 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
             context.skills = skills
             context.ephemera = ephemera
             context.objectsOfPower = objectsOfPower
+            context.secrets = secrets
             context.attacks = attacks
             context.armors = armors
             context.totalArmor = totalArmor

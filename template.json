@@ -121,10 +121,10 @@
         "stage": 0
       },
       "equipment": {
-        "income": 0,
-        "glass": 0,
-        "crystal": 0,
-        "gem": 0,
+        "income": "",
+        "glass": "",
+        "crystal": "",
+        "gem": "",
         "ephemeraLimit": 2
       }
     },
@@ -141,6 +141,7 @@
   "Item": {
     "types": [
       "item",
+      "secret",
       "ability",
       "skill",
       "attack",
@@ -171,6 +172,11 @@
         "value": 1,
         "min": 0
       }
+    },
+    "secret": {
+      "templates": [
+        "base"
+      ]
     },
     "skill": {
       "templates": [
