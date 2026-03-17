@@ -2,10 +2,10 @@
   "id": "invisiblesun",
   "title": "Invisible Sun",
   "description": "Implementation of the Invisible Sun system by Monte Cook Games for Foundry. Includes PC and NPC sheets with a roll engine as well as compedium packs.",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "compatibility": {
     "minimum": "12",
-    "verified": "12.331"
+    "verified": "13.346"
   },
   "url": "https://github.com/super12pl/invisiblesun-foundryvtt",
   "manifest": "https://github.com/super12pl/invisiblesun-foundryvtt/releases/latest/download/system.json",
