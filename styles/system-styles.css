@@ -469,6 +469,7 @@
     height: 25px;
 }
 
+.certes,
 .accurancy,
 .movement,
 .physicality,
@@ -476,9 +477,18 @@
     background-color: rgb(248, 225, 202);
 }
 
+.qualia,
 .intellect,
 .sortilege,
 .sorcery,
 .interaction {
     background-color: rgb(193, 190, 205);
+}
+
+.certes {
+    grid-column: 1 / span 2;
+}
+
+.qualia {
+    grid-column: 3 / span 2;
 }

@@ -47,7 +47,14 @@
 
 
             <div class="flexcolcenter pools">
+                <div class="grid grid-2col" style="width:100%">
+
+                </div>
                 <div class="resources grid grid-4col">
+                    <div class="certes" style="padding-left: 50px;padding-right:50px">Certes <input type="number"
+                            name="system.stats.certes.value" value="{{system.stats.certes.value}}"></input></div>
+                    <div class="qualia" style="padding-left: 50px;padding-right:50px">Qualia <input type="number"
+                            name="system.stats.qualia.value" value="{{system.stats.certes.value}}"></input></div>
                     {{#each system.pools as |pool key|}}
                     <div class="resource flex-group-center flexcol {{key}}">
                         <label class="resource-label rollable" data-type="pool" data-pool="{{key}}">{{key}}</label>
@@ -96,12 +103,12 @@
         {{#if (eq system.basic.order.value "weaver")}}
         <a class="item" data-tab="weaver">Weaver</a>
         {{/if}}
-        {{#if (eq system.basic.order.value "goetic")}}
+        {{!-- {{#if (eq system.basic.order.value "goetic")}}
         {{!-- <a class="item" data-tab="goetic">Goetic</a> --}}
-        {{/if}}
-        {{#if (eq system.basic.order.value "apostate")}}
+        {{!-- {{/if}}
+        {{!-- {{#if (eq system.basic.order.value "apostate")}}
         {{!-- <a class="item" data-tab="apostate">Apostate</a> --}}
-        {{/if}}
+        {{!-- {{/if}}
         <a class="item" data-tab="advancement">Advancement</a>
     </nav>
 
