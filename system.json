@@ -92,6 +92,18 @@
         "PLAYER": "OBSERVER",
         "ASSISTANT": "OWNER"
       }
+    },
+    {
+      "name": "sooth-deck",
+      "label": "Sooth Deck",
+      "system": "invisiblesun",
+      "path": "packs/sooth-deck",
+      "type": "Card Stack",
+      "flags": {},
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     }
   ],
   "languages": [
