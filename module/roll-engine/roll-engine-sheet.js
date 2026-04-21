@@ -31,6 +31,7 @@ export class RollEngineDialogSheet extends FormApplication {
         const data = super.getData().object;
         data.spell = false
         data.sortilege = false
+        data.hiddenKnowledge = false
         data.attack = false
         data.pool = ""
         if (data.dataset.type != "pool") {
@@ -41,11 +42,7 @@ export class RollEngineDialogSheet extends FormApplication {
                     data.skill = parseInt(data.item.system.level)
                     break
                 case "item":
-                    data.tool = parseInt(data.item.system.level)
-                    break
                 case "ephemera":
-                    data.tool = parseInt(data.item.system.level)
-                    break
                 case "objectOfPower":
                     data.tool = parseInt(data.item.system.level)
                     break
@@ -62,7 +59,7 @@ export class RollEngineDialogSheet extends FormApplication {
                     data.spellCost = parseInt(data.dataset.level)
                     data.magic = data.spellCost
                     if (data.item.system.addDie) {
-                        data.spell = true
+                        data.spell = 1
                     }
                     break
                 case "attack":
@@ -91,40 +88,51 @@ export class RollEngineDialogSheet extends FormApplication {
         data.beneTask = formData.beneTask
         data.beneEffect = formData.beneEffect
         data.spellCost = formData.spellCost
+        data.hiddenKnowledge = formData.hiddenKnowledge
     }
     activateListeners(html) {
         super.activateListeners(html)
         let data = this.object
         html.find(".rollBtn").click(async () => {
             var difficulty = getNum(data.difficulty)
-            let venture = getNum(data.skill) + getNum(data.tool) + getNum(data.circuimstance) + getNum(data.magic) + getNum(data.beneTask)
-            let roll = new Roll((data?.sortilege + data?.spell + 1) + "d10k+" + (venture - 1), data.actor.getRollData());
+            let venture = getNum(data.skill) + getNum(data.tool) + getNum(data.circuimstance) + getNum(data.magic) + getNum(data.beneTask) + getNum(data.hiddenKnowledge)
+            let dicecount = getNum(data?.sortilege) + getNum(data?.spell) + 1
+            let roll = new Roll(dicecount + "d10k+" + (venture - 1), data.actor.getRollData());
             await roll.evaluate()
             let successes = 0
             let fluxes = 0
+            var resultDisplay = ""
+            let results = []
             for (const [index, die] of roll.dice[0].results.entries()) {
+                resultDisplay += " <span"
                 if (die.result == 1 && index != 0) {
+                    resultDisplay+=" style='color:red'"
                     fluxes += 1
                 }
-                if ((die.result + venture - 1) >= difficulty) {
+                if ((die.result + venture - 1) >= difficulty && difficulty) {
+                     resultDisplay+=" style='color:green'"
                     successes += 1
                 }
+                resultDisplay += ">" + (die.result + venture - 1)  + "</span>"
+                results.push((die.result + venture - 1))
             }
             if (data.pool.length > 0) {
                 game.actors.get(data.actor._id).system.pools[data.pool].value -= getNum(data.beneTask + data.beneEffect)
             }
             game.actors.get(data.actor._id).system.pools["sorcery"].value -= getNum(data.spellCost)
+            game.actors.get(data.actor._id).system.stats.hiddenKnowledge.value -= getNum(data.hiddenKnowledge)
+
             if (data.attack) {
                 roll.toMessage({
                     speaker: ChatMessage.getSpeaker({ actor: data.actor }),
-                    flavor: `<div class='flexcolcenter'><h1>${data.label}</h1><h2>Difficulty: ${difficulty}<h2><h2>${successes} successes</h2><h2>Damage: ${data.damage + getNum(data.beneEffect) * 2}</h2><h2>${"Magical Flux!".repeat(fluxes)}</h2><h3>Venture: ${venture}</h3></div>`,
+                    flavor: `<div class='flexcolcenter'><h1>${data.label}</h1>${difficulty ? `<h2>Difficulty: ${difficulty}</h2><h2>${successes} successes</h2>` : ""}<h2>Damage: ${data.damage + getNum(data.beneEffect) * 2}</h2><h2>${"Magical Flux!".repeat(fluxes)}</h2><h3>Venture: ${venture}</h3><h2>Results:${resultDisplay}</h2></div>`,
                     rollMode: game.settings.get('core', 'rollMode'),
                 });
             }
             else {
                 roll.toMessage({
                     speaker: ChatMessage.getSpeaker({ actor: data.actor }),
-                    flavor: `<div class='flexcolcenter'><h1>${data.label}</h1><h2>Difficulty: ${difficulty}<h2><h2>${successes} successes</h2>${data.beneEffect ? `<h2>Bene used for effect: ${data.beneEffect}</h2>` : ""}<h2>${"Magical Flux!".repeat(fluxes)}</h2><h3>Venture: ${venture}</h3></div>`,
+                    flavor: `<div class='flexcolcenter'><h1>${data.label}</h1>${difficulty ? `<h2>Difficulty: ${difficulty}</h2><h2>${successes} successes</h2>` : ""}${data.beneEffect ? `<h2>Bene used for effect: ${data.beneEffect}</h2>` : ""}<h2>${"Magical Flux!".repeat(fluxes)}</h2><h3>Venture: ${venture}</h3><h2>Results:${resultDisplay}</h2></div>`,
                     rollMode: game.settings.get('core', 'rollMode'),
                 });
             }

@@ -34,9 +34,12 @@
         </div>
     </div>
     <div class="flexcolcenter customcheckbox">
-        <h3>Spell</h3>
-        <input type="checkbox" name="spell" {{#if spell}}checked{{/if}} />
-        <span class="checkmark">+die</span>
+        <h3>Hid. Know.</h3>
+        <input type="checkbox" name="hiddenKnowledge" {{#if hiddenKnowledge}}checked{{/if}} />
+    </div>
+    <div class="flexcolcenter customcheckbox">
+        <h3>+ Magic Dice</h3>
+        <input type="number" name="spell" value="{{spell}}" />
     </div>
     <div class="flexcolcenter customcheckbox">
         <h3>Sortilege</h3>

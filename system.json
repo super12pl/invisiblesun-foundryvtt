@@ -104,6 +104,18 @@
         "PLAYER": "OBSERVER",
         "ASSISTANT": "OWNER"
       }
+    },
+    {
+      "name": "weaver-aggregates",
+      "label": "Weaver Aggregates",
+      "system": "invisiblesun",
+      "path": "packs/weaver-aggregates",
+      "type": "Item",
+      "flags": {},
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     }
   ],
   "languages": [
