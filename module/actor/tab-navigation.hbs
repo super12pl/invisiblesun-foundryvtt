@@ -1,0 +1,24 @@
+{{!-- Sheet Tab Navigation --}}
+<nav class="sheet-tabs tabs" style="margin-top: -30px;">
+    <a class="item" data-action="tab" data-group="primary" data-tab="description">Notes</a>
+    <a class="item" data-action="tab" data-group="primary" data-tab="combat">Combat</a>
+    <a class="item" data-action="tab" data-group="primary" data-tab="items">Items</a>
+    <a class="item" data-action="tab" data-group="primary" data-tab="skills">Skills</a>
+    <a class="item" data-action="tab" data-group="primary" data-tab="abilities">Abilities/Spells</a>
+    {{#if (eq system.basic.order.value "vance")}}
+    <a class="item" data-action="tab" data-group="primary" data-tab="vance">Vance</a>
+    {{/if}}
+    {{#if (eq system.basic.order.value "maker")}}
+    <a class="item" data-action="tab" data-group="primary" data-tab="maker">Maker</a>
+    {{/if}}
+    {{#if (eq system.basic.order.value "weaver")}}
+    <a class="item" data-action="tab" data-group="primary" data-tab="weaver">Weaver</a>
+    {{/if}}
+    {{#if (eq system.basic.order.value "goetic")}}
+    {{!-- <a class="item" data-action="tab" data-group="primary" data-tab="goetic">Goetic</a> --}}
+    {{/if}}
+    {{#if (eq system.basic.order.value "apostate")}}
+    {{!-- <a class="item" data-action="tab" data-group="primary" data-tab="apostate">Apostate</a> --}}
+    {{/if}}
+    <a class="item" data-action="tab" data-group="primary" data-tab="advancement">Advancement</a>
+</nav>

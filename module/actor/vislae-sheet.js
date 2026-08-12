@@ -1,6 +1,4 @@
-/**
-* @extends {ActorSheet}
-*/
+const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api
 import {
     rollEngineForm
 } from "../roll-engine/roll-engine-form.js";
@@ -117,126 +115,172 @@ window.Handlebars.registerHelper("makertext", function (stage) {
             return "Desired Item Created :)"
     }
 })
-export class InvisibleSunVislaeActorSheet extends ActorSheet {
+export class InvisibleSunVislaeActorSheet extends HandlebarsApplicationMixin(foundry.applications.sheets.ActorSheetV2) {
     /** @override */
-    static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
-            classes: ["invisiblesun", "sheet", "actor"],
+    static DEFAULT_OPTIONS = {
+        classes: ["invisiblesun", "sheet", "actor"],
+        position: {
             width: 800,
             height: 1000,
-            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body" }]
-        });
+        },
+        window: {
+            resizable: "true"
+        }
     }
     /** @override */
-    get template() {
-        const path = 'systems/invisiblesun/module/actor';
-        console.log(`${path}/${this.actor.type}-sheet-template.hbs`)
-        return `${path}/${this.actor.type}-sheet-template.hbs`;
+    static PARTS = {
+        vislaeActor: {
+            template: "systems/invisiblesun/module/actor/vislae-sheet-template.hbs"
+        },
+        npcActor: {
+            template: "systems/invisiblesun/module/actor/npc-sheet-template.hbs"
+        },
+        tabNavigation: {
+            template: "systems/invisiblesun/module/actor/tab-navigation.hbs"
+        },
+        description: {
+            template: "systems/invisiblesun/module/actor/tabs/description.hbs"
+        },
+        combat: {
+            template: "systems/invisiblesun/module/actor/tabs/combat.hbs"
+        },
+        items: {
+            template: "systems/invisiblesun/module/actor/tabs/items.hbs"
+        },
+        abilities: {
+            template: "systems/invisiblesun/module/actor/tabs/abilities.hbs"
+        },
+        advancement: {
+            template: "systems/invisiblesun/module/actor/tabs/advancement.hbs"
+        },
+        skills: {
+            template: "systems/invisiblesun/module/actor/tabs/skills.hbs"
+        },
+        maker: {
+            template: "systems/invisiblesun/module/actor/tabs/maker.hbs"
+        },
+        vance: {
+            template: "systems/invisiblesun/module/actor/tabs/vance.hbs"
+        },
+        weaver: {
+            template: "systems/invisiblesun/module/actor/tabs/weaver.hbs"
+        },
+
+    }
+    static TABS = {
+        primary: {
+            tabs: [{ id: "description" }, { id: "combat" }, { id: "items" }, { id: "abilities" }, { id: "advancement" }, { id: "skills" }, { id: "maker" }, { id: "vance" }, { id: "weaver" }],
+            initial: "description"
+        }
     }
     /** @override */
-    getData() {
-        const context = super.getData()
-        const actorData = context.data
-        context.system = actorData.system
-        context.flags = actorData.flags
-        context.rollData = context.actor.getRollData();
-        if (actorData.type == "vislae") {
-            const gear = [];
-            const abilities = [];
-            const skills = [[], [], [], []];
-            const ephemera = []
-            const objectsOfPower = []
-            const secrets = []
-            const attacks = []
-            const armors = []
-            const vanceSpells = []
-            const placedVanceSpells = []
-            const weaverAggregates = []
-            const weaverSpells = []
-            var totalArmor = 0
-            // Iterate through items, allocating to containers
-            for (let i of context.items) {
-                i.img = i.img || DEFAULT_TOKEN;
-                // Append to gear.
-                switch (i.type) {
-                    case "item":
-                        gear.push(i);
-                        break
-                    case "ability":
-                        abilities.push(i)
-                        break
-                    case "skill":
-                        switch (i.system.skillType) {
-                            case "action":
-                                skills[0].push(i)
-                                break
-                            case "narrative":
-                                skills[1].push(i)
-                                break
-                            case "development":
-                                skills[2].push(i)
-                                break
-                            case "connection":
-                                skills[3].push(i)
-                                break
-                        }
-                        break
-                    case "attack":
-                        attacks.push(i)
-                        break
-                    case "incantation":
-                    case "ephemera":
-                        ephemera.push(i)
-                        break
-                    case "objectOfPower":
-                        objectsOfPower.push(i)
-                        break
-                    case "secret":
-                        secrets.push(i)
-                        break
-                    case "armor":
-                        totalArmor += i.system.value
-                        armors.push(i)
-                        break
-                    case "vanceSpell":
-                        vanceSpells.push(i)
-                        if (i.system.placed) {
-                            placedVanceSpells.push(i)
-                        }
-                        break
-                    case "weaverAggregate":
-                        weaverAggregates.push(i)
-                        break
-                    case "weaverSpell":
-                        weaverSpells.push(i)
-                        break
+    _prepareContext(options) {
+        const sheet = this
+        return super._prepareContext().then(function (context) {
+            const actorData = context.document
+            context.system = actorData.system
+            context.flags = actorData.flags
+            context.rollData = actorData.getRollData();
+            context.tabs = sheet._prepareTabs("primary")
+            if (actorData.type == "vislae") {
+                const gear = [];
+                const abilities = [];
+                const skills = [[], [], [], []];
+                const ephemera = []
+                const objectsOfPower = []
+                const secrets = []
+                const attacks = []
+                const armors = []
+                const vanceSpells = []
+                const placedVanceSpells = []
+                const weaverAggregates = []
+                const weaverSpells = []
+                var totalArmor = 0
+                // Iterate through items, allocating to containers
+                for (let i of actorData.items) {
+                    i.img = i.img || DEFAULT_TOKEN;
+                    // Append to gear.
+                    switch (i.type) {
+                        case "item":
+                            gear.push(i);
+                            break
+                        case "ability":
+                            abilities.push(i)
+                            break
+                        case "skill":
+                            switch (i.system.skillType) {
+                                case "action":
+                                    skills[0].push(i)
+                                    break
+                                case "narrative":
+                                    skills[1].push(i)
+                                    break
+                                case "development":
+                                    skills[2].push(i)
+                                    break
+                                case "connection":
+                                    skills[3].push(i)
+                                    break
+                            }
+                            break
+                        case "attack":
+                            attacks.push(i)
+                            break
+                        case "incantation":
+                        case "ephemera":
+                            ephemera.push(i)
+                            break
+                        case "objectOfPower":
+                            objectsOfPower.push(i)
+                            break
+                        case "secret":
+                            secrets.push(i)
+                            break
+                        case "armor":
+                            totalArmor += i.system.value
+                            armors.push(i)
+                            break
+                        case "vanceSpell":
+                            vanceSpells.push(i)
+                            if (i.system.placed) {
+                                placedVanceSpells.push(i)
+                            }
+                            break
+                        case "weaverAggregate":
+                            weaverAggregates.push(i)
+                            break
+                        case "weaverSpell":
+                            weaverSpells.push(i)
+                            break
+                    }
                 }
+                // Assign and return
+                context.gear = gear;
+                context.abilities = abilities
+                context.skills = skills
+                context.ephemera = ephemera
+                context.objectsOfPower = objectsOfPower
+                context.secrets = secrets
+                context.attacks = attacks
+                context.armors = armors
+                context.totalArmor = totalArmor
+                context.totalCrux = Math.min(context.system.stats.joy, context.system.stats.despair)
+                context.vanceSpells = vanceSpells
+                context.placedVanceSpells = placedVanceSpells
+                context.weaverAggregates = weaverAggregates
+                context.weaverSpells = weaverSpells
             }
-            // Assign and return
-            context.gear = gear;
-            context.abilities = abilities
-            context.skills = skills
-            context.ephemera = ephemera
-            context.objectsOfPower = objectsOfPower
-            context.secrets = secrets
-            context.attacks = attacks
-            context.armors = armors
-            context.totalArmor = totalArmor
-            context.totalCrux = Math.min(context.system.stats.joy, context.system.stats.despair)
-            context.vanceSpells = vanceSpells
-            context.placedVanceSpells = placedVanceSpells
-            context.weaverAggregates = weaverAggregates
-            context.weaverSpells = weaverSpells
-        }
-        if (actorData.type == "npc") {
-            const items = []
-            for (let i of context.items) {
-                i.img = i.img || DEFAULT_TOKEN;
-                items.push(i)
+            if (actorData.type == "npc") {
+                const items = []
+                for (let i of actorData.items) {
+                    i.img = i.img || DEFAULT_TOKEN;
+                    items.push(i)
+                }
+                context.items = items
             }
-            context.items = items
-        }
-        return context
+            return context
+        })
+
     }
     async _onItemCreate(event) {
         event.preventDefault();
@@ -297,8 +341,9 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
     }
 
     /** @override */
-    activateListeners(html) {
-        super.activateListeners(html);
+    _onRender(context, options) {
+        super._onRender();
+        const html = $(this.element)
         //pool buttons
         html.find(".resource").each(function () {
             let resourceValue = $(this).find(".value")
@@ -466,5 +511,21 @@ export class InvisibleSunVislaeActorSheet extends ActorSheet {
 
             }
         })
+    }
+    _configureRenderOptions(options) {
+        super._configureRenderOptions(options)
+        if (this.type == "npc") {
+            options.parts = ["npcActor"]
+        }
+        else {
+            options.parts = ["vislaeActor"]
+        }
+        options.parts.push(...["tabNavigation", "description", "combat", "items", "abilities", "advancement", "skills", "maker", "vance", "weaver"])
+    }
+    async _preparePartContext(partId, context) {
+        if (partId in context.tabs) {
+            context.tab = context.tabs[partId]
+        }
+        return context
     }
 }

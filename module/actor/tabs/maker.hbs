@@ -1,0 +1,32 @@
+<section class="tab maker {{tab.cssClass}}" data-group="primary" data-tab="maker">
+    <h3>Maker's Matrix</h3>
+    <div class="grid grid-2col">
+        <div class="flexcolcenter" style="row-gap: 15px;">
+            <div class="flexrowcenter">
+                <label>Desired item level: <input type="number" name="system.maker.desiredLevel"
+                        value="{{system.maker.desiredLevel}}"></label>
+                <label>x: <input type="number" name="system.maker.x" value="{{system.maker.x}}" disabled></label>
+            </div>
+            <h2>{{makertext system.maker.stage}}</h2>
+            {{#if (showStart system.maker.stage)}}<button class="makermakestart">Start</button>{{/if}}
+            {{#if (showDone system.maker.stage)}}<button class="makermakedone">Done</button>{{/if}}
+            {{#if (showTrueFalse system.maker.stage)}}<div class="flexrowcenter">
+                <button class="makermaketrue">
+                    {{#if (eq system.maker.stage 11)}}
+                    Yes
+                    {{else}}
+                    Success
+                    {{/if}}
+                </button>
+                <button class="makermakefalse">
+                    {{#if (eq system.maker.stage 11)}}
+                    No
+                    {{else}}
+                    Failure
+                    {{/if}}
+                </button>
+            </div>{{/if}}
+        </div>
+        <img src="systems/invisiblesun/icons/makerMatrix.png">
+    </div>
+</section>
