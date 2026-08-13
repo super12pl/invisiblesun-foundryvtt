@@ -221,7 +221,6 @@
 }
 
 .invisiblesun .sheet-header {
-    overflow: hidden;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -490,4 +489,8 @@
 
 .qualia {
     grid-column: 3 / span 2;
+}
+
+.invisiblesun .tab {
+    overflow-y: scroll;
 }

@@ -6,7 +6,7 @@
         </div>
         {{#each placedVanceSpells as |item id|}}
         <div class="vance-spell flexrowcenter"
-            style="position:absolute;{{spellSize item.system.class item.system.halfSize}};left:{{item.system.left}};top:{{item.system.top}};background-color:{{item.system.color}}"
+            style="position:relative;{{spellSize item.system.class item.system.halfSize}};left:{{item.system.left}};top:{{item.system.top}};background-color:{{item.system.color}}"
             data-item-id='{{item._id}}'>
             {{item.name}}</div>
         {{/each}}

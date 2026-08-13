@@ -123,6 +123,9 @@ export class InvisibleSunVislaeActorSheet extends HandlebarsApplicationMixin(fou
             width: 800,
             height: 1000,
         },
+        form: {
+            submitOnChange: true
+        },
         window: {
             resizable: "true"
         }
@@ -132,9 +135,9 @@ export class InvisibleSunVislaeActorSheet extends HandlebarsApplicationMixin(fou
         vislaeActor: {
             template: "systems/invisiblesun/module/actor/vislae-sheet-template.hbs"
         },
-        npcActor: {
-            template: "systems/invisiblesun/module/actor/npc-sheet-template.hbs"
-        },
+        // npcActor: {
+        //     template: "systems/invisiblesun/module/actor/npc-sheet-template.hbs"
+        // },
         tabNavigation: {
             template: "systems/invisiblesun/module/actor/tab-navigation.hbs"
         },
@@ -174,112 +177,110 @@ export class InvisibleSunVislaeActorSheet extends HandlebarsApplicationMixin(fou
         }
     }
     /** @override */
-    _prepareContext(options) {
-        const sheet = this
-        return super._prepareContext().then(function (context) {
-            const actorData = context.document
-            context.system = actorData.system
-            context.flags = actorData.flags
-            context.rollData = actorData.getRollData();
-            context.tabs = sheet._prepareTabs("primary")
-            if (actorData.type == "vislae") {
-                const gear = [];
-                const abilities = [];
-                const skills = [[], [], [], []];
-                const ephemera = []
-                const objectsOfPower = []
-                const secrets = []
-                const attacks = []
-                const armors = []
-                const vanceSpells = []
-                const placedVanceSpells = []
-                const weaverAggregates = []
-                const weaverSpells = []
-                var totalArmor = 0
-                // Iterate through items, allocating to containers
-                for (let i of actorData.items) {
-                    i.img = i.img || DEFAULT_TOKEN;
-                    // Append to gear.
-                    switch (i.type) {
-                        case "item":
-                            gear.push(i);
-                            break
-                        case "ability":
-                            abilities.push(i)
-                            break
-                        case "skill":
-                            switch (i.system.skillType) {
-                                case "action":
-                                    skills[0].push(i)
-                                    break
-                                case "narrative":
-                                    skills[1].push(i)
-                                    break
-                                case "development":
-                                    skills[2].push(i)
-                                    break
-                                case "connection":
-                                    skills[3].push(i)
-                                    break
-                            }
-                            break
-                        case "attack":
-                            attacks.push(i)
-                            break
-                        case "incantation":
-                        case "ephemera":
-                            ephemera.push(i)
-                            break
-                        case "objectOfPower":
-                            objectsOfPower.push(i)
-                            break
-                        case "secret":
-                            secrets.push(i)
-                            break
-                        case "armor":
-                            totalArmor += i.system.value
-                            armors.push(i)
-                            break
-                        case "vanceSpell":
-                            vanceSpells.push(i)
-                            if (i.system.placed) {
-                                placedVanceSpells.push(i)
-                            }
-                            break
-                        case "weaverAggregate":
-                            weaverAggregates.push(i)
-                            break
-                        case "weaverSpell":
-                            weaverSpells.push(i)
-                            break
-                    }
+    async _prepareContext(options) {
+        const context = await super._prepareContext()
+        const actorData = context.document
+        context.system = actorData.system
+        context.flags = actorData.flags
+        context.rollData = actorData.getRollData();
+        context.tabs = this._prepareTabs("primary")
+        if (actorData.type == "vislae") {
+            const gear = [];
+            const abilities = [];
+            const skills = [[], [], [], []];
+            const ephemera = []
+            const objectsOfPower = []
+            const secrets = []
+            const attacks = []
+            const armors = []
+            const vanceSpells = []
+            const placedVanceSpells = []
+            const weaverAggregates = []
+            const weaverSpells = []
+            var totalArmor = 0
+            // Iterate through items, allocating to containers
+            for (let i of actorData.items) {
+                i.img = i.img || DEFAULT_TOKEN;
+                // Append to gear.
+                switch (i.type) {
+                    case "item":
+                        gear.push(i);
+                        break
+                    case "ability":
+                        abilities.push(i)
+                        break
+                    case "skill":
+                        switch (i.system.skillType) {
+                            case "action":
+                                skills[0].push(i)
+                                break
+                            case "narrative":
+                                skills[1].push(i)
+                                break
+                            case "development":
+                                skills[2].push(i)
+                                break
+                            case "connection":
+                                skills[3].push(i)
+                                break
+                        }
+                        break
+                    case "attack":
+                        attacks.push(i)
+                        break
+                    case "incantation":
+                    case "ephemera":
+                        ephemera.push(i)
+                        break
+                    case "objectOfPower":
+                        objectsOfPower.push(i)
+                        break
+                    case "secret":
+                        secrets.push(i)
+                        break
+                    case "armor":
+                        totalArmor += i.system.value
+                        armors.push(i)
+                        break
+                    case "vanceSpell":
+                        vanceSpells.push(i)
+                        if (i.system.placed) {
+                            placedVanceSpells.push(i)
+                        }
+                        break
+                    case "weaverAggregate":
+                        weaverAggregates.push(i)
+                        break
+                    case "weaverSpell":
+                        weaverSpells.push(i)
+                        break
                 }
-                // Assign and return
-                context.gear = gear;
-                context.abilities = abilities
-                context.skills = skills
-                context.ephemera = ephemera
-                context.objectsOfPower = objectsOfPower
-                context.secrets = secrets
-                context.attacks = attacks
-                context.armors = armors
-                context.totalArmor = totalArmor
-                context.totalCrux = Math.min(context.system.stats.joy, context.system.stats.despair)
-                context.vanceSpells = vanceSpells
-                context.placedVanceSpells = placedVanceSpells
-                context.weaverAggregates = weaverAggregates
-                context.weaverSpells = weaverSpells
             }
-            if (actorData.type == "npc") {
-                const items = []
-                for (let i of actorData.items) {
-                    i.img = i.img || DEFAULT_TOKEN;
-                    items.push(i)
-                }
-                context.items = items
+            // Assign and return
+            context.gear = gear;
+            context.abilities = abilities
+            context.skills = skills
+            context.ephemera = ephemera
+            context.objectsOfPower = objectsOfPower
+            context.secrets = secrets
+            context.attacks = attacks
+            context.armors = armors
+            context.totalArmor = totalArmor
+            context.totalCrux = Math.min(context.system.stats.joy, context.system.stats.despair)
+            context.vanceSpells = vanceSpells
+            context.placedVanceSpells = placedVanceSpells
+            context.weaverAggregates = weaverAggregates
+            context.weaverSpells = weaverSpells
+        }
+        if (actorData.type == "npc") {
+            const items = []
+            for (let i of actorData.items) {
+                i.img = i.img || DEFAULT_TOKEN;
+                items.push(i)
             }
-            return context
-        })
+            context.items = items
+        }
+        return context
 
     }
     async _onItemCreate(event) {
@@ -342,7 +343,7 @@ export class InvisibleSunVislaeActorSheet extends HandlebarsApplicationMixin(fou
 
     /** @override */
     _onRender(context, options) {
-        super._onRender();
+        super._onRender(context, options);
         const html = $(this.element)
         //pool buttons
         html.find(".resource").each(function () {
